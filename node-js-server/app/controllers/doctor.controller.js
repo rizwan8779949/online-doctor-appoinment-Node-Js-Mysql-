@@ -5,15 +5,14 @@ const Op = db.Sequelize.Op;
 // Create and Save a new Doctor
 exports.create = (req, res) => {
   // Create a Doctor
-  const patient = {
-    patient_name: req.body.name,
-    address: req.body.address,
-    email_id: req.body.emailId,
-    phone_no: req.body.phoneNo,
+  const doctor = {
+    doctorName: req.body.doctorName,
+    workingTime: req.body.workingTime,
+    consultantFees: req.body.consultantFees,
   };
 
   // Save Doctor in the database
-  Doctor.create(patient)
+  Doctor.create(doctor)
     .then((data) => {
       res.status(200).send({ data: data });
     })
@@ -36,7 +35,7 @@ exports.findAll = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while retrieving patient.",
+        message: err.message || "Some error occurred while retrieving doctor.",
       });
     });
 };
@@ -65,12 +64,12 @@ exports.update = (req, res) => {
   })
     .then((num) => {
       if (num == 1) {
-        res.send({
+        res.status(200).send({
           message: "Doctor was updated successfully.",
         });
       } else {
-        res.send({
-          message: `Cannot update Doctor with id=${id}. Maybe Doctor was not found or req.body is empty!`,
+        res.status(400).send({
+          message: `Cannot update Doctor with id=${id}. Maybe Doctor was not found or is empty!`,
         });
       }
     })
@@ -90,11 +89,11 @@ exports.delete = (req, res) => {
   })
     .then((num) => {
       if (num == 1) {
-        res.send({
+        res.status(200).send({
           message: "Doctor was deleted successfully!",
         });
       } else {
-        res.send({
+        res.status(400).send({
           message: `Cannot delete Doctor with id=${id}. Maybe Doctor was not found!`,
         });
       }

@@ -1,15 +1,15 @@
 module.exports = (sequelize, Sequelize) => {
   const Patient = sequelize.define("patient", {
-    patient_name: {
+    patientName: {
       type: Sequelize.STRING,
     },
     address: {
       type: Sequelize.STRING,
     },
-    email_id: {
+    emailId: {
       type: Sequelize.STRING,
     },
-    phone_no: {
+    phoneNo: {
       type: Sequelize.STRING,
       unique: true,
       require: true,

@@ -1,12 +1,12 @@
 module.exports = (sequelize, Sequelize) => {
   const Doctor = sequelize.define("doctor", {
-    doctor_name: {
+    doctorName: {
       type: Sequelize.STRING,
     },
-    working_time: {
+    workingTime: {
       type: Sequelize.STRING,
     },
-    consultant_fees: {
+    consultantFees: {
       type: Sequelize.INTEGER,
     },
   });

@@ -13,10 +13,10 @@ exports.create = (req, res) => {
   }
   // Create a Patient
   const patient = {
-    patient_name: req.body.name,
+    patientName: req.body.patientName,
     address: req.body.address,
-    email_id: req.body.emailId,
-    phone_no: req.body.phoneNo,
+    emailId: req.body.emailId,
+    phoneNo: req.body.phoneNo,
   };
 
   // Save Patient in the database
@@ -72,11 +72,11 @@ exports.update = (req, res) => {
   })
     .then((num) => {
       if (num == 1) {
-        res.send({
+        res.status(200).send({
           message: "Patient was updated successfully.",
         });
       } else {
-        res.send({
+        res.status(400).send({
           message: `Cannot update Patient with id=${id}. Maybe Patient was not found or req.body is empty!`,
         });
       }
@@ -97,11 +97,11 @@ exports.delete = (req, res) => {
   })
     .then((num) => {
       if (num == 1) {
-        res.send({
+        res.status(200).send({
           message: "Patient was deleted successfully!",
         });
       } else {
-        res.send({
+        res.status(400).send({
           message: `Cannot delete Patient with id=${id}. Maybe Patient was not found!`,
         });
       }
