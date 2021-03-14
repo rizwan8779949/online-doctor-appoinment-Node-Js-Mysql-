@@ -1,17 +1,10 @@
 const db = require("../models");
-const Patient = db.patient;
+const Doctor = db.doctor;
 const Op = db.Sequelize.Op;
 
-// Create and Save a new Patient
+// Create and Save a new Doctor
 exports.create = (req, res) => {
-  // Validate request
-  if (!req.body.phoneNo) {
-    res.status(400).send({
-      message: "Phone can not be empty",
-    });
-    return;
-  }
-  // Create a Patient
+  // Create a Doctor
   const patient = {
     patient_name: req.body.name,
     address: req.body.address,
@@ -19,27 +12,27 @@ exports.create = (req, res) => {
     phone_no: req.body.phoneNo,
   };
 
-  // Save Patient in the database
-  Patient.create(patient)
+  // Save Doctor in the database
+  Doctor.create(patient)
     .then((data) => {
-      res.send(data);
+      res.status(200).send({ data: data });
     })
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Patient.",
+          err.message || "Some error occurred while creating the Doctor.",
       });
     });
 };
 
-// Retrieve all Patients from the database.
+// Retrieve all Doctors from the database.
 exports.findAll = (req, res) => {
   const title = req.query.title;
   var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
 
-  Patient.findAll({ where: condition })
+  Doctor.findAll({ where: condition })
     .then((data) => {
-      res.status(200).send({ content: data });
+      res.status(200).send({ data: data });
     })
     .catch((err) => {
       res.status(500).send({
@@ -48,67 +41,67 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Find a single Patient with an id
+// Find a single Doctor with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Patient.findByPk(id)
+  Doctor.findByPk(id)
     .then((data) => {
-      res.send(data);
+      res.status(200).send({ data: data });
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error retrieving Patient with id=" + id,
+        message: "Error retrieving Doctor with id=" + id,
       });
     });
 };
 
-// Update a Patient by the id in the request
+// Update a Doctor by the id in the request
 exports.update = (req, res) => {
   const id = req.params.id;
 
-  Patient.update(req.body, {
+  Doctor.update(req.body, {
     where: { id: id },
   })
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: "Patient was updated successfully.",
+          message: "Doctor was updated successfully.",
         });
       } else {
         res.send({
-          message: `Cannot update Patient with id=${id}. Maybe Patient was not found or req.body is empty!`,
+          message: `Cannot update Doctor with id=${id}. Maybe Doctor was not found or req.body is empty!`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating Patient with id=" + id,
+        message: "Error updating Doctor with id=" + id,
       });
     });
 };
 
-// Delete a Patient with the specified id in the request
+// Delete a Doctor with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  Patient.destroy({
+  Doctor.destroy({
     where: { id: id },
   })
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: "Patient was deleted successfully!",
+          message: "Doctor was deleted successfully!",
         });
       } else {
         res.send({
-          message: `Cannot delete Patient with id=${id}. Maybe Patient was not found!`,
+          message: `Cannot delete Doctor with id=${id}. Maybe Doctor was not found!`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not delete Patient with id=" + id,
+        message: "Could not delete Doctor with id=" + id,
       });
     });
 };

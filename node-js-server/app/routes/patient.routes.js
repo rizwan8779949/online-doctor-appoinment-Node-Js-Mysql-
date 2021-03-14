@@ -4,19 +4,19 @@ module.exports = (app) => {
   var router = require("express").Router();
 
   // Create a new Patient
-  router.post("/", patient.create);
+  router.post("/create", patient.create);
 
   // Retrieve all Patients
-  router.get("/", patient.findAll);
+  router.get("/allList", patient.findAll);
 
   // Retrieve a single Patient with id
-  router.get("/:id", patient.findOne);
+  router.get("/profile:id", patient.findOne);
 
   // Update a Patient with id
-  router.put("/:id", patient.update);
+  router.put("/edit:id", patient.update);
 
   // Delete a Patient with id
-  router.delete("/:id", patient.delete);
+  router.delete("/delete:id", patient.delete);
 
   app.use("/api/patients", router);
 };
