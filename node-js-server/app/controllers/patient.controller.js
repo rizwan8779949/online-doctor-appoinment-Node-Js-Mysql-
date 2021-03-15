@@ -34,10 +34,16 @@ exports.create = (req, res) => {
 
 // Retrieve all Patients from the database.
 exports.findAll = (req, res) => {
-  const title = req.query.title;
-  var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
-
-  Patient.findAll({ where: condition })
+  // const title = req.query.title;
+  // var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
+  if (!req.query.page || !req.query.limit) {
+    res.status(400).send({ message: "page and limit missing" });
+    return;
+  }
+  var page = Number(req.query.page);
+  var limit = Number(req.query.limit);
+  var offset = page ? page * limit : 0;
+  Patient.findAndCountAll({ limit: limit, offset: offset })
     .then((data) => {
       res.status(200).send({ content: data });
     })
