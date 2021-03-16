@@ -22,5 +22,7 @@ db.sequelize = sequelize;
 db.tutorials = require("./tutorial.model.js")(sequelize, Sequelize);
 db.patient = require("./patient.model")(sequelize, Sequelize);
 db.doctor = require("./doctor.model")(sequelize, Sequelize);
+db.appoinment = require("./appoinment.model")(sequelize, Sequelize);
+db.applyDoctor = require("./applyDoctor.model")(sequelize, Sequelize);
 
 module.exports = db;

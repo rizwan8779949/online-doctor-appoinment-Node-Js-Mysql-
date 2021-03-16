@@ -1,30 +1,23 @@
 const db = require("../models");
-const Doctor = db.doctor;
+const ApplyDoctor = db.applyDoctor;
 const Op = db.Sequelize.Op;
 
-// Create and Save a new Doctor
+// Create and Save a new ApplyDoctor
 exports.create = (req, res) => {
-  // Create a Doctor
-  const doctor = {
-    doctorName: req.body.doctorName,
-    workingTime: req.body.workingTime,
-    consultantFees: req.body.consultantFees,
-  };
-
-  // Save Doctor in the database
-  Doctor.create(doctor)
+  // Save ApplyDoctor in the database
+  ApplyDoctor.create(appoinment)
     .then((data) => {
       res.status(200).send({ data: data });
     })
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Doctor.",
+          err.message || "Some error occurred while creating the ApplyDoctor.",
       });
     });
 };
 
-// Retrieve all Doctors from the database.
+// Retrieve all ApplyDoctors from the database.
 exports.findAll = (req, res) => {
   const title = req.query.title;
   // var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
@@ -35,78 +28,79 @@ exports.findAll = (req, res) => {
   var page = Number(req.query.page);
   var limit = Number(req.query.limit);
   var offset = page ? page * limit : 0;
-  Doctor.findAndCountAll({ limit: limit, offset: offset })
+  ApplyDoctor.findAndCountAll({ limit: limit, offset: offset })
     .then((data) => {
       res.status(200).send({ content: data });
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while retrieving doctor.",
+        message:
+          err.message || "Some error occurred while retrieving appoinment.",
       });
     });
 };
 
-// Find a single Doctor with an id
+// Find a single ApplyDoctor with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Doctor.findByPk(id)
+  ApplyDoctor.findByPk(id)
     .then((data) => {
       res.status(200).send({ data: data });
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error retrieving Doctor with id=" + id,
+        message: "Error retrieving ApplyDoctor with id=" + id,
       });
     });
 };
 
-// Update a Doctor by the id in the request
+// Update a ApplyDoctor by the id in the request
 exports.update = (req, res) => {
   const id = req.params.id;
 
-  Doctor.update(req.body, {
+  ApplyDoctor.update(req.body, {
     where: { id: id },
   })
     .then((num) => {
       if (num == 1) {
         res.status(200).send({
-          message: "Doctor was updated successfully.",
+          message: "ApplyDoctor was updated successfully.",
         });
       } else {
         res.status(400).send({
-          message: `Cannot update Doctor with id=${id}. Maybe Doctor was not found or is empty!`,
+          message: `Cannot update ApplyDoctor with id=${id}. Maybe ApplyDoctor was not found or is empty!`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating Doctor with id=" + id,
+        message: "Error updating ApplyDoctor with id=" + id,
       });
     });
 };
 
-// Delete a Doctor with the specified id in the request
+// Delete a ApplyDoctor with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  Doctor.destroy({
+  ApplyDoctor.destroy({
     where: { id: id },
   })
     .then((num) => {
       if (num == 1) {
         res.status(200).send({
-          message: "Doctor was deleted successfully!",
+          message: "ApplyDoctor was deleted successfully!",
         });
       } else {
         res.status(400).send({
-          message: `Cannot delete Doctor with id=${id}. Maybe Doctor was not found!`,
+          message: `Cannot delete ApplyDoctor with id=${id}. Maybe ApplyDoctor was not found!`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not delete Doctor with id=" + id,
+        message: "Could not delete ApplyDoctor with id=" + id,
       });
     });
 };
