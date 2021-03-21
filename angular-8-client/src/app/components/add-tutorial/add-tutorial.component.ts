@@ -1,39 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { TutorialService } from 'src/app/services/tutorial.service';
+import { TutorialService } from 'src/app/shared-module/Services/tutorials/tutorial.service';
 
 @Component({
   selector: 'app-add-tutorial',
   templateUrl: './add-tutorial.component.html',
-  styleUrls: ['./add-tutorial.component.css']
+  styleUrls: ['./add-tutorial.component.css'],
 })
 export class AddTutorialComponent implements OnInit {
   tutorial = {
     title: '',
     description: '',
-    published: false
+    published: false,
   };
   submitted = false;
 
-  constructor(private tutorialService: TutorialService) { }
+  constructor(private tutorialService: TutorialService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   saveTutorial() {
     const data = {
       title: this.tutorial.title,
-      description: this.tutorial.description
+      description: this.tutorial.description,
     };
 
-    this.tutorialService.create(data)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.submitted = true;
-        },
-        error => {
-          console.log(error);
-        });
+    this.tutorialService.create(data).subscribe(
+      (response) => {
+        console.log(response);
+        this.submitted = true;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   newTutorial() {
@@ -41,8 +40,7 @@ export class AddTutorialComponent implements OnInit {
     this.tutorial = {
       title: '',
       description: '',
-      published: false
+      published: false,
     };
   }
-
 }

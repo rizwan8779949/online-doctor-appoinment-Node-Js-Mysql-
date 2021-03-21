@@ -1,0 +1,70 @@
+<form [formGroup]="form" (ngSubmit)="memberFormValid()">
+  <div class="custom-modal-header">
+    <div class="heading-form">
+      Edit Member
+    </div>
+    <div class="cross-images">
+      <img
+        src="assets/svg/form-cross-circle.svg"
+        class="custom-times-form-circle"
+        (click)="resetFormAndHideModal()"
+      />
+    </div>
+  </div>
+  <div class="form-body">
+    <mat-form-field class="example-full-width forms-margin-top">
+      <input
+        matInput
+        type="text"
+        placeholder="Name"
+        formControlName="name"
+        required
+      />
+      <mat-error
+        *ngIf="
+          form.controls['name'].errors?.required &&
+          (form.controls['name']?.dirty || form.controls['name']?.touched)
+        "
+      >
+        Name is required
+      </mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width forms-margin-top">
+      <input
+        matInput
+        type="number"
+        placeholder="Phone Number"
+        formControlName="phoneNumber"
+        pattern="^[6-9]\d{9}$"
+        onnkeydown="javascript: return event.keyCode == 69 ? false : true"
+        required
+      />
+      <mat-error
+        *ngIf="
+          form.controls['phoneNumber'].errors?.required &&
+          (form.controls['phoneNumber']?.dirty ||
+            form.controls['phoneNumber']?.touched)
+        "
+      >
+        Phone Number is required
+      </mat-error>
+      <mat-error
+        *ngIf="
+          !form.controls['phoneNumber'].errors?.required &&
+          !form.controls['phoneNumber']?.valid
+        "
+      >
+        Phone Number not valid
+      </mat-error>
+    </mat-form-field>
+    <div class="mt-3">
+      <input
+        type="submit"
+        class="form-button"
+        [disabled]="form.invalid || requestSentBoolean"
+        value="Edit"
+      />
+    </div>
+  </div>
+</form>

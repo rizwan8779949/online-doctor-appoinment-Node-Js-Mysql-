@@ -12,7 +12,6 @@ module.exports = (sequelize, Sequelize) => {
     phoneNo: {
       type: Sequelize.STRING,
       unique: true,
-      require: true,
     },
   });
 

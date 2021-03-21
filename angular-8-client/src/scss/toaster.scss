@@ -1,0 +1,41 @@
+.toast-container .ngx-toastr:hover {
+  box-shadow: 0 0 12px #000000 !important;
+  opacity: 1 !important;
+  cursor: pointer !important;
+}
+.toast-container .ngx-toastr {
+  position: relative !important;
+  overflow: hidden !important;
+  margin: 0 0 6px !important;
+  padding: 15px 15px 15px 50px !important;
+  width: 300px !important;
+  border-radius: 10px !important;
+  background-position: 15px center !important;
+  background-repeat: no-repeat !important;
+  background-size: 24px !important;
+  box-shadow: 0 0 12px #999999 !important;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+
+  color: #ffffff;
+}
+.toast-success {
+  //   background-color: red !important;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08) !important;
+}
+.success-toaster {
+  background-color: #51a351;
+  color: #ffffff;
+  border-radius: 10px;
+}
+.error-toaster {
+  color: #ffffff;
+  background-color: #bd362f;
+  border-radius: 10px;
+}
+.warning-toaster {
+  color: #ffffff;
+  background-color: #f89406;
+  border-radius: 10px;
+}

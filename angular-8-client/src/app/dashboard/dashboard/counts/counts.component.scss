@@ -1,0 +1,57 @@
+@import "../../../../scss/variable.scss";
+
+.counts-container {
+  display: flex;
+  width: 350px;
+  padding: 10px 0px 0px 0px;
+  height: 100px;
+  img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .counts-value {
+    font-weight: 900;
+    font-size: 50px;
+    color: $backgroundColor;
+    text-align: center;
+    width: 100%;
+    margin-top: -10px;
+  }
+  .counts-label {
+    font-size: 14px;
+    color: #808080;
+    position: relative;
+    top: -37px;
+  }
+}
+.custom-row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.six-full-size {
+  width: 100%;
+}
+.width-80 {
+  width: 90%;
+  height: 125px;
+}
+.width-40 {
+  width: 45%;
+  height: 130px;
+}
+
+@media only screen and (max-width: 600px) {
+  .customer-count-top-bottom {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  .width-80 {
+    width: 100%;
+  }
+  .width-40 {
+    width: 100%;
+  }
+}

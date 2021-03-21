@@ -1,0 +1,84 @@
+<div class="container-fluid bg-image">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <div
+        class="global-shadow login-mat-card p-3 custom-bg-white rounded-border"
+      >
+        <div class="logo-box">
+          <img src="assets/png/logo.png" class="logo-image" />
+        </div>
+        <br />
+        <form [formGroup]="form" (ngSubmit)="checkLoginData()">
+          <mat-form-field class="example-full-width input-size">
+            <input
+              matInput
+              type="text"
+              placeholder="Username"
+              formControlName="userName"
+              required
+            />
+            <mat-error
+              *ngIf="
+                form.controls['userName'].errors?.required &&
+                (form.controls['userName']?.dirty ||
+                  form.controls['userName']?.touched)
+              "
+            >
+              Username is required
+            </mat-error>
+          </mat-form-field>
+          <br />
+          <!-- <mat-form-field class="example-full-width input-size">
+            <mat-select placeholder="Role" formControlName="role" required>
+              <mat-option *ngFor="let data of roleNames" [value]="data.value">
+                {{ data.viewValue }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                form.controls['role'].errors?.required &&
+                (form.controls['role']?.dirty || form.controls['role']?.touched)
+              "
+            >
+              Role is required
+            </mat-error>
+          </mat-form-field> -->
+          <br />
+          <mat-form-field class="example-full-width input-size">
+            <input
+              matInput
+              type="password"
+              placeholder="Password"
+              formControlName="password"
+              required
+            />
+            <mat-error
+              *ngIf="
+                form.controls['password'].errors?.required &&
+                (form.controls['password']?.dirty ||
+                  form.controls['password']?.touched)
+              "
+            >
+              Password is required
+            </mat-error>
+          </mat-form-field>
+
+          <div class="forgot-password-link-2">
+            <span (click)="goto('stats')">form submit ?</span>
+          </div>
+          <br />
+          <div>
+            <input
+              type="submit"
+              class="before-login-button"
+              value="Login"
+              [disabled]="loginButtonDisabled"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>

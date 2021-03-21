@@ -1,0 +1,100 @@
+.input-and-date {
+  position: fixed;
+  top: 0px;
+  background: #fff;
+  padding: 0px 0px 0px 20px;
+  margin-left: -15px;
+  border-radius: 10px;
+  width: 100%;
+  height: 63px;
+  z-index: 111;
+  .logo-box {
+    padding: 0px 0px 0px 0px;
+    img {
+      width: 295px;
+      height: 60px;
+      margin-left: -14px;
+    }
+  }
+  .main-heading {
+    padding: 20px 0px 0px 0px;
+  }
+}
+
+.mobile-view {
+  display: none;
+  visibility: hidden;
+  clear: both;
+}
+.date-width {
+  width: 100px;
+  margin-top: -11px;
+}
+.custom-col-4 {
+  width: 45%;
+}
+.custom-col-8 {
+  width: 68%;
+}
+
+.form {
+  float: right;
+  padding: 20px 23px 0px 0px;
+}
+
+::ng-deep .mat-form-field-infix {
+  padding: 6px 0px 6px 0px !important;
+}
+
+.web-view {
+  display: block;
+  visibility: visible;
+}
+.custom-col-5 {
+  width: 20%;
+}
+@media only screen and (max-width: 600px) {
+  .custom-col-4 {
+    width: 25%;
+  }
+  .mobile-view {
+    display: block;
+    visibility: visible;
+  }
+  .custom-col-8 {
+    width: 70%;
+  }
+  .web-view {
+    display: none;
+    visibility: hidden;
+    clear: both;
+  }
+  .form {
+    float: left;
+  }
+  .input-and-date .logo-box-dashboad img {
+    width: 100px;
+    height: 60px;
+    margin-left: -8px;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .input-and-date .logo-box-dashboad img {
+    width: 72px;
+    height: 36px;
+    margin-top: 11px;
+    margin-left: -8px;
+  }
+  .date-width {
+    width: 61px;
+    margin-top: -11px;
+    font-size: 10px;
+  }
+
+  .custom-col-8 {
+    width: 54%;
+  }
+  .custom-col-4 {
+    width: 25%;
+  }
+}

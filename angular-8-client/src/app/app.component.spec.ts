@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'Angular8ClientCrud'`, () => {
+  it(`should have as title 'Chargebizz-Adminpanel'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('Angular8ClientCrud');
+    expect(app.title).toEqual('Chargebizz-Adminpanel');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('Angular8ClientCrud app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('Chargebizz-Adminpanel app is running!');
   });
 });

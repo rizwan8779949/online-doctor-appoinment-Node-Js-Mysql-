@@ -1,0 +1,84 @@
+@import "../../../scss/variable.scss";
+.custom-row {
+  overflow: hidden;
+}
+.bg-image {
+  height: 100vh;
+  background-color: $backgroundColor;
+}
+.submitForm-mat-card {
+  margin-top: 15px;
+  margin-bottom: 16px;
+}
+.input-size {
+  width: 100%;
+}
+.logo-box-2 {
+  text-align: center;
+  .logo-image-2 {
+    width: 60px;
+    height: 60px;
+    margin: 7px 0px 7px 0px;
+  }
+}
+::ng-deep.mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: $backgroundColor !important;
+}
+
+// ::ng-deep.mat-form-field-underline {
+//   /*change color of underline*/
+//   background-color: $backgroundColor !important;
+// }
+
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: $backgroundColor !important;
+}
+.forgot-password-link-2 {
+  text-align: right;
+  width: 100%;
+  span {
+    font-weight: bold;
+    font-size: 10px;
+    color: $backgroundColor;
+    cursor: pointer;
+  }
+}
+
+.submitForm-buttons-2:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.forgot-password-mail {
+  text-align: center;
+  margin: 13px 0px 13px 0px;
+  text-transform: capitalize;
+  span {
+    font-size: 20px;
+    font-weight: 500;
+    color: $backgroundColor;
+  }
+}
+.logo-box {
+  text-align: center;
+  img {
+    width: 250px;
+    height: 70px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .forgot-password-mail {
+    margin: 13px 0px 13px 0px;
+    span {
+      font-size: 18px;
+    }
+  }
+  .submitForm-mat-card {
+    margin-top: 14px;
+    margin-bottom: 20px;
+  }
+  .bg-image {
+    height: auto;
+  }
+}

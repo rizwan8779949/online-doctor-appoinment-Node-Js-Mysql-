@@ -4,25 +4,10 @@ const Op = db.Sequelize.Op;
 
 // Create and Save a new Patient
 exports.create = (req, res) => {
-  // Validate request
-  if (!req.body.phoneNo) {
-    res.status(400).send({
-      message: "Phone can not be empty",
-    });
-    return;
-  }
-  // Create a Patient
-  const patient = {
-    patientName: req.body.patientName,
-    address: req.body.address,
-    emailId: req.body.emailId,
-    phoneNo: req.body.phoneNo,
-  };
-
   // Save Patient in the database
-  Patient.create(patient)
+  Patient.create(req.body)
     .then((data) => {
-      res.send(data);
+      res.status(200).send(data);
     })
     .catch((err) => {
       res.status(500).send({
@@ -34,16 +19,10 @@ exports.create = (req, res) => {
 
 // Retrieve all Patients from the database.
 exports.findAll = (req, res) => {
-  // const title = req.query.title;
-  // var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
-  if (!req.query.page || !req.query.limit) {
-    res.status(400).send({ message: "page and limit missing" });
-    return;
-  }
-  var page = Number(req.query.page);
-  var limit = Number(req.query.limit);
-  var offset = page ? page * limit : 0;
-  Patient.findAndCountAll({ limit: limit, offset: offset })
+  const phoneNo = req.query.phoneNo;
+  var condition = phoneNo ? { phoneNo: { [Op.like]: `%${phoneNo}%` } } : null;
+
+  Patient.findAll({ where: condition })
     .then((data) => {
       res.status(200).send({ content: data });
     })
@@ -60,11 +39,28 @@ exports.findOne = (req, res) => {
 
   Patient.findByPk(id)
     .then((data) => {
-      res.send(data);
+      res.status(200).send(data);
     })
     .catch((err) => {
       res.status(500).send({
         message: "Error retrieving Patient with id=" + id,
+      });
+    });
+};
+
+// Find a single Patient with an phoneNo
+exports.findOneByPhoneNo = (req, res) => {
+  const phoneNo = req.params.phoneNo;
+
+  Patient.findOne({
+    phoneNo: phoneNo,
+  })
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Error retrieving Patient with id=" + phoneNo,
       });
     });
 };

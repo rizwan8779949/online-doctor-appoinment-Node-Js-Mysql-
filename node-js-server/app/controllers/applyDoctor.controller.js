@@ -5,7 +5,7 @@ const Op = db.Sequelize.Op;
 // Create and Save a new ApplyDoctor
 exports.create = (req, res) => {
   // Save ApplyDoctor in the database
-  ApplyDoctor.create(appoinment)
+  ApplyDoctor.create(req.body)
     .then((data) => {
       res.status(200).send({ data: data });
     })
@@ -19,16 +19,10 @@ exports.create = (req, res) => {
 
 // Retrieve all ApplyDoctors from the database.
 exports.findAll = (req, res) => {
-  const title = req.query.title;
-  // var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
-  if (!req.query.page || !req.query.limit) {
-    res.status(400).send({ message: "page and limit missing" });
-    return;
-  }
-  var page = Number(req.query.page);
-  var limit = Number(req.query.limit);
-  var offset = page ? page * limit : 0;
-  ApplyDoctor.findAndCountAll({ limit: limit, offset: offset })
+  const status = req.query.status;
+  var condition = status ? { status: { [Op.like]: `%${status}%` } } : null;
+
+  ApplyDoctor.findAll({ where: condition })
     .then((data) => {
       res.status(200).send({ content: data });
     })

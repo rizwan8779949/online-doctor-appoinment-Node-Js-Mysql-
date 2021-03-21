@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
   const Appoinment = sequelize.define("appoinment", {
-    customerId: {
+    patientId: {
       type: Sequelize.INTEGER,
       references: {
         model: "patients", // 'patient' refers to table name

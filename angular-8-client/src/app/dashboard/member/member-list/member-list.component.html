@@ -1,0 +1,81 @@
+<div class="container-fluid">
+  <app-header-part></app-header-part>
+  <div class="margin-top-table-dashboard">
+    <!-- <div class="sub-heading">
+      Member List <span *ngIf="totalElements">({{ totalElements }})</span>
+    </div> -->
+    <div class="add-buttons">
+      <label class="add-button-label" (click)="addMemberModal()"
+        >+ Add Member</label
+      >
+    </div>
+  </div>
+
+  <div
+    class="custom-bg-white global-rounded custom-box-shadow table-overflow-auto mt-2 mb-5"
+  >
+    <div class="table-custom-responsive table-list-container">
+      <table class="table table-list">
+        <thead class="table-border-top">
+          <tr>
+            <th>Name</th>
+            <th>Phone No.</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody *ngIf="listDto.length > 0">
+          <tr *ngFor="let data of listDto" class="table-without-line">
+            <td class="table-list-highlighted-text">
+              <span *ngIf="data.name" matTooltip="{{ data.name }}">
+                {{ data.name | titlecase | slice: 0:18 }}
+                <span *ngIf="data.name.length > 18">...</span></span
+              >
+            </td>
+            <td>{{ data.phoneNumber }}</td>
+            <td>
+              <div class="icons mobile-view">
+                <mat-icon
+                  (click)="editMemberModal(data)"
+                  class="mr-2 cursor-pointer"
+                  >edit</mat-icon
+                >
+                <mat-icon
+                  (click)="deleteMemberModal(data)"
+                  class="cursor-pointer"
+                  >delete</mat-icon
+                >
+              </div>
+              <div class="icons web-view">
+                <mat-icon
+                  (click)="editMemberModal(data)"
+                  class="mr-4 cursor-pointer"
+                  >edit</mat-icon
+                >
+                <mat-icon
+                  (click)="deleteMemberModal(data)"
+                  class="cursor-pointer"
+                  >delete</mat-icon
+                >
+              </div>
+            </td>
+          </tr>
+        </tbody>
+
+        <tbody *ngIf="listDto.length == 0">
+          <tr>
+            <td colspan="100%">No Member Available</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <mat-paginator
+      [length]="totalElements"
+      [pageSize]="10"
+      (page)="paginationView($event)"
+    >
+    </mat-paginator>
+  </div>
+
+  <!-- </div> -->
+</div>

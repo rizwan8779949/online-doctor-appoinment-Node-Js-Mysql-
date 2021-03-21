@@ -1,0 +1,67 @@
+@import "../../../scss/variable.scss";
+
+.custom-row {
+  overflow: hidden;
+}
+.bg-image {
+  height: 100vh;
+  background-color: $backgroundColor;
+}
+.login-mat-card {
+  height: auto;
+  margin-top: 40%;
+}
+
+::ng-deep.mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: $backgroundColor !important;
+}
+
+// ::ng-deep.mat-form-field-underline {
+//   /*change color of underline*/
+//   background-color: $backgroundColor !important;
+// }
+
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: $backgroundColor !important;
+}
+.input-size {
+  width: 100%;
+}
+.forgot-password-link-2 {
+  text-align: right;
+  width: 100%;
+  span {
+    font-weight: bold;
+    font-size: 10px;
+    color: $backgroundColor;
+    cursor: pointer;
+  }
+}
+
+.before-login-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.forgot-password-mail {
+  text-align: center;
+  margin: 26px 0px 26px 0px;
+  span {
+    font-size: 22px;
+    font-weight: 500;
+    color: $backgroundColor;
+  }
+}
+.logo-box {
+  text-align: center;
+  img {
+    width: 250px;
+    height: 70px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .login-mat-card {
+    margin-top: 27%;
+  }
+}

@@ -1,0 +1,96 @@
+<div class="input-and-date d-flex">
+  <!-- <div class="custom-col-4">
+    <div class="main-heading">{{ pageName }}</div>
+    <div class="logo-box-2">
+      <img src="assets/png/logo-2.png" class="logo-image-2" />
+    </div>
+  </div> -->
+
+  <div class="custom-col-5">
+    <div class="logo-box">
+      <img src="assets/png/logo.png" class="logo-image" />
+    </div>
+  </div>
+  <div class="custom-col-8 web-view">
+    <form [formGroup]="form" class="form" *ngIf="dateOnlyVisible()">
+      <mat-form-field
+        appearance="outline"
+        class="date-width cursor-pointer mr-4"
+        (click)="picker1.open()"
+      >
+        <mat-label>From</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker1"
+          formControlName="fromDate"
+          (ngModelChange)="dateFilterGlobal()"
+          placeholder="From [Date]"
+          class="cursor-pointer"
+          readonly
+        />
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field
+        appearance="outline"
+        class="date-width cursor-pointer"
+        (click)="picker2.open()"
+      >
+        <mat-label>To</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker2"
+          formControlName="toDate"
+          (ngModelChange)="dateFilterGlobal()"
+          placeholder="To [Date]"
+          [min]="form.controls.fromDate.value"
+          class="cursor-pointer"
+          readonly
+        />
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </form>
+  </div>
+  <br />
+</div>
+<div class="input-and-date d-flex mobile-view" *ngIf="pageName == 'Dashboard'">
+  <div class="custom-col-4">
+    <div class="logo-box-dashboad">
+      <img src="assets/png/logo-dashboard.png" class="logo-image" />
+    </div>
+  </div>
+  <div class="custom-col-8 mobile-view">
+    <form [formGroup]="form" class="form" *ngIf="dateOnlyVisible()">
+      <mat-form-field
+        appearance="outline"
+        class="date-width cursor-pointer mr-3"
+      >
+        <mat-label>From</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          (click)="picker.open()"
+          formControlName="fromDate"
+          (ngModelChange)="dateFilterGlobal()"
+          placeholder="From [Date]"
+          class="cursor-pointer"
+          readonly
+        />
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="date-width cursor-pointer">
+        <mat-label>To</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker1"
+          (click)="picker1.open()"
+          formControlName="toDate"
+          (ngModelChange)="dateFilterGlobal()"
+          placeholder="To [Date]"
+          class="cursor-pointer"
+          readonly
+        />
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+    </form>
+  </div>
+</div>

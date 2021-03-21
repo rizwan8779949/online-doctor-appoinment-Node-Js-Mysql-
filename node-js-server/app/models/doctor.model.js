@@ -5,13 +5,15 @@ module.exports = (sequelize, Sequelize) => {
     },
     emailId: {
       type: Sequelize.STRING,
-      unique: true,
-      require: true,
     },
-    workingTime: {
+    phoneNo: {
       type: Sequelize.STRING,
+      unique: true,
     },
     address: {
+      type: Sequelize.STRING,
+    },
+    workingTime: {
       type: Sequelize.STRING,
     },
     specialistType: {

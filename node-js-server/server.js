@@ -34,6 +34,8 @@ require("./app/routes/patient.routes")(app);
 require("./app/routes/doctor.routes")(app);
 require("./app/routes/appoinment.routes")(app);
 require("./app/routes/applyDoctor.routes")(app);
+require("./app/routes/login.routes")(app);
+
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

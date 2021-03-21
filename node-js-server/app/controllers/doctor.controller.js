@@ -4,17 +4,10 @@ const Op = db.Sequelize.Op;
 
 // Create and Save a new Doctor
 exports.create = (req, res) => {
-  // Create a Doctor
-  const doctor = {
-    doctorName: req.body.doctorName,
-    workingTime: req.body.workingTime,
-    consultantFees: req.body.consultantFees,
-  };
-
   // Save Doctor in the database
-  Doctor.create(doctor)
+  Doctor.create(req.body)
     .then((data) => {
-      res.status(200).send({ data: data });
+      res.status(200).send(data);
     })
     .catch((err) => {
       res.status(500).send({
@@ -26,16 +19,10 @@ exports.create = (req, res) => {
 
 // Retrieve all Doctors from the database.
 exports.findAll = (req, res) => {
-  const title = req.query.title;
-  // var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
-  if (!req.query.page || !req.query.limit) {
-    res.status(400).send({ message: "page and limit missing" });
-    return;
-  }
-  var page = Number(req.query.page);
-  var limit = Number(req.query.limit);
-  var offset = page ? page * limit : 0;
-  Doctor.findAndCountAll({ limit: limit, offset: offset })
+  const phoneNo = req.query.phoneNo;
+  var condition = phoneNo ? { phoneNo: { [Op.like]: `%${phoneNo}%` } } : null;
+
+  Doctor.findAll({ where: condition })
     .then((data) => {
       res.status(200).send({ content: data });
     })
@@ -57,6 +44,23 @@ exports.findOne = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message: "Error retrieving Doctor with id=" + id,
+      });
+    });
+};
+
+// Find a single Patient with an phoneNo
+exports.findOneByPhoneNo = (req, res) => {
+  const phoneNo = req.query.phoneNo;
+
+  Doctor.findOne({
+    phoneNo: phoneNo,
+  })
+    .then((data) => {
+      res.status(200).send({ userDetails: data });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Error retrieving Doctor with phoneNo=" + phoneNo,
       });
     });
 };

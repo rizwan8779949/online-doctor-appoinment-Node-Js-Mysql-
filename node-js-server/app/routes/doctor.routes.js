@@ -12,6 +12,9 @@ module.exports = (app) => {
   // Retrieve a single Doctor with id
   router.get("/profile:id", doctor.findOne);
 
+  // Retrieve a single Doctor with id
+  router.get("/findByPhoneNo", doctor.findOneByPhoneNo);
+
   // Update a Doctor with id
   router.put("/edit:id", doctor.update);
 

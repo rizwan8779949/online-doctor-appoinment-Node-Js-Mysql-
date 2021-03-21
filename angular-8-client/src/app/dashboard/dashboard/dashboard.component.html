@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <app-header-part
+    (success)="getDashboardDataAccordingDate($event)"
+  ></app-header-part>
+
+  <div class="main-heading margin-top-table-dashboard mb-5">
+    Our weekly updates for this week
+
+    <div class="row mt-4">
+      <div class="col-md-5 p-0">
+        <app-dashboard-counts
+          [meetings]="dashbaordDto.meetings"
+          [referrals]="dashbaordDto.referrals"
+          [amount]="dashbaordDto.amount"
+          [visitor]="dashbaordDto.visitor"
+          [testimonials]="dashbaordDto.testimonials"
+          [duration]="1000"
+        ></app-dashboard-counts>
+      </div>
+      <div class="col-md-7">
+        <app-forms-list [formList]="formList"></app-forms-list>
+      </div>
+    </div>
+  </div>
+</div>

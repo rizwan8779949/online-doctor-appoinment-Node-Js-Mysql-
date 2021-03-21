@@ -1,0 +1,49 @@
+<div
+  class="custom-bg-white global-rounded custom-box-shadow table-overflow-auto"
+>
+  <div class="table-custom-responsive table-list-container">
+    <table class="table table-list">
+      <thead class="table-border-top">
+        <tr>
+          <th>Name</th>
+          <th>Phone No.</th>
+          <th>Meetings</th>
+          <th>Referrals</th>
+          <th>Amount</th>
+          <th>Visitor</th>
+          <th>Testimonials</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="formList.length > 0">
+        <tr *ngFor="let data of formList">
+          <td class="table-list-highlighted-text">
+            <span *ngIf="data.member" [matTooltip]="data.member.name">
+              <span *ngIf="data.member.name">
+                {{ data.member.name | titlecase | slice: 0:18 }}
+                <span *ngIf="data.member.name.length > 18">...</span>
+              </span></span
+            >
+          </td>
+          <td>
+            <span *ngIf="data.member" [matTooltip]="data.member.phoneNumber">
+              <span *ngIf="data.member.phoneNumber">
+                {{ data.member.phoneNumber }}
+              </span></span
+            >
+          </td>
+          <td>{{ data.meetings }}</td>
+          <td>{{ data.referrals }}</td>
+          <td>{{ data.amount }}</td>
+          <td>{{ data.visitor }}</td>
+          <td>{{ data.testimonials }}</td>
+        </tr>
+      </tbody>
+
+      <tbody *ngIf="formList.length == 0">
+        <tr>
+          <td colspan="100%">No Stats Available</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

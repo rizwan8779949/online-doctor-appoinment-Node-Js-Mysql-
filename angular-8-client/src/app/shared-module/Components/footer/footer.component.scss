@@ -1,0 +1,53 @@
+@import "../../../../scss/variable.scss";
+.footer {
+  position: fixed;
+  bottom: 0;
+  right: -169px;
+  width: 100%;
+  background-color: #fff;
+  font-weight: 600;
+  font-size: 13px;
+  color: $backgroundColor;
+  padding: 3px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.middle-text {
+  vertical-align: -webkit-baseline-middle !important;
+  color: $backgroundColor;
+  display: inline;
+}
+.footer-mobile {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  right: -75px;
+  background-color: #fff;
+  font-weight: 600;
+  font-size: 13px;
+  color: $backgroundColor;
+  padding: 3px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.text-right {
+  text-align: right;
+}
+.footer-shadow {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+.terms-security {
+  margin-left: 12%;
+}
+.heart-color {
+  color: red;
+}
+
+@media only screen and (max-width: 600px) {
+  .terms-security {
+    margin-left: 4%;
+  }
+  .middle-text {
+    font-size: 8px;
+  }
+}
