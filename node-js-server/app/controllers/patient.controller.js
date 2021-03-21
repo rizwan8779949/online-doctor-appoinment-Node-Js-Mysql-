@@ -7,7 +7,7 @@ exports.create = (req, res) => {
   // Save Patient in the database
   Patient.create(req.body)
     .then((data) => {
-      res.status(200).send(data);
+      res.status(200).send({ data: data });
     })
     .catch((err) => {
       res.status(500).send({
@@ -49,14 +49,14 @@ exports.findOne = (req, res) => {
 };
 
 // Find a single Patient with an phoneNo
-exports.findOneByPhoneNo = (req, res) => {
+exports.findByPhoneNo = (req, res) => {
   const phoneNo = req.params.phoneNo;
 
   Patient.findOne({
     phoneNo: phoneNo,
   })
     .then((data) => {
-      res.status(200).send(data);
+      res.status(200).send({ userDetails: data });
     })
     .catch((err) => {
       res.status(500).send({

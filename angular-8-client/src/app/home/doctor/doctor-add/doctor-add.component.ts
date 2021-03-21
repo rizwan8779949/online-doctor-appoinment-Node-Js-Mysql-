@@ -10,11 +10,11 @@ import {
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SnackBarService } from 'src/app/shared-module/Services/snackBar/snack-bar.service';
 @Component({
-  selector: 'app-member-add',
-  templateUrl: './member-add.component.html',
-  styleUrls: ['./member-add.component.scss'],
+  selector: 'app-doctor-add',
+  templateUrl: './doctor-add.component.html',
+  styleUrls: ['./doctor-add.component.scss'],
 })
-export class MemberAddComponent implements OnInit {
+export class DoctorAddComponent implements OnInit {
   form: FormGroup;
   requestSentBoolean: Boolean = false;
   constructor(
@@ -22,7 +22,7 @@ export class MemberAddComponent implements OnInit {
     private utils: UtilsService,
     private formBuilder: FormBuilder,
     private snackBarService: SnackBarService,
-    private dialogRef: MatDialogRef<MemberAddComponent>
+    private dialogRef: MatDialogRef<DoctorAddComponent>
   ) {}
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -36,18 +36,18 @@ export class MemberAddComponent implements OnInit {
     this.closeDialog();
   }
 
-  memberFormValid() {
+  formValid() {
     if (this.form.valid) {
-      this.addMemberApi();
+      this.addDoctorApi();
     }
   }
-  addMemberApi() {
+  addDoctorApi() {
     if (!this.requestSentBoolean) {
       this.requestSentBoolean = true;
       this.api.commonPostMethod(this.form.value, '').subscribe(
         (res: any) => {
           this.requestSentBoolean = false;
-          this.snackBarService.success(res['msg']);
+          this.snackBarService.success(res['message']);
           this.closeDialog();
         },
         (err: any) => {

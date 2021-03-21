@@ -1,0 +1,143 @@
+<div class="container-fluid bg-image">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <div
+        class="global-shadow submitForm-mat-card p-3 custom-bg-white rounded-border"
+      >
+        <div class="logo-box">
+          <img src="assets/png/doctor-logo.png" class="logo-image" />
+        </div>
+        <div class="forgot-password-mail">
+          <span>Signup for patient </span>
+        </div>
+        <form [formGroup]="form" (ngSubmit)="checksubmitFormData()">
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              type="text"
+              placeholder="Name"
+              formControlName="patientName"
+              required
+            />
+            <mat-error
+              *ngIf="
+                form.controls['patientName'].errors?.required &&
+                (form.controls['patientName']?.dirty ||
+                  form.controls['patientName']?.touched)
+              "
+            >
+              Patient Name is required
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              type="number"
+              placeholder="Phone Number"
+              formControlName="phoneNo"
+              pattern="^[6-9]\d{9}$"
+              onnkeydown="javascript: return event.keyCode == 69 ? false : true"
+              required
+            />
+            <mat-error
+              *ngIf="
+                form.controls['phoneNo'].errors?.required &&
+                (form.controls['phoneNo']?.dirty ||
+                  form.controls['phoneNo']?.touched)
+              "
+            >
+              Phone Number is required
+            </mat-error>
+            <mat-error
+              *ngIf="
+                !form.controls['phoneNo'].errors?.required &&
+                !form.controls['phoneNo']?.valid
+              "
+            >
+              Phone Number not valid
+            </mat-error>
+            <mat-error *ngIf="alreadyExistBolean"
+              >Phone No already exits
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              type="text"
+              placeholder="Email"
+              formControlName="emailId"
+              required
+            />
+            <mat-error
+              *ngIf="
+                form.controls['emailId'].errors?.required &&
+                (form.controls['emailId']?.dirty ||
+                  form.controls['emailId']?.touched)
+              "
+            >
+              Email is required
+            </mat-error>
+            <mat-error *ngIf="form.controls.emailId?.errors?.email">
+              Email not Valid
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <textarea
+              matInput
+              type="text"
+              placeholder="Address"
+              formControlName="address"
+              required
+            ></textarea>
+            <mat-error
+              *ngIf="
+                form.controls['address'].errors?.required &&
+                (form.controls['address']?.dirty ||
+                  form.controls['address']?.touched)
+              "
+            >
+              Address is required
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              type="text"
+              placeholder="Password"
+              formControlName="password"
+              minlength="6"
+              required
+            />
+            <mat-error
+              *ngIf="
+                form.controls['password'].errors?.required &&
+                (form.controls['password']?.dirty ||
+                  form.controls['password']?.touched)
+              "
+            >
+              Password is required
+            </mat-error>
+            <mat-error
+              *ngIf="
+                !form.controls['password'].errors?.required &&
+                !form.controls['password']?.valid
+              "
+            >
+              Password at least 6 character
+            </mat-error>
+          </mat-form-field>
+
+          <div class="forgot-password-link-2">
+            <span (click)="goto('auth/login')">already signup ?</span>
+          </div>
+          <div class="mt-2">
+            <input type="submit" class="before-login-button" value="Submit" />
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>

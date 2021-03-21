@@ -1,20 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MemberDeleteComponent } from './member-delete.component';
+import { DoctorDeleteComponent } from './doctor-delete.component';
 
 describe('MemberDeleteComponent', () => {
-  let component: MemberDeleteComponent;
-  let fixture: ComponentFixture<MemberDeleteComponent>;
+  let component: DoctorDeleteComponent;
+  let fixture: ComponentFixture<DoctorDeleteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MemberDeleteComponent ]
-    })
-    .compileComponents();
+      declarations: [DoctorDeleteComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MemberDeleteComponent);
+    fixture = TestBed.createComponent(DoctorDeleteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

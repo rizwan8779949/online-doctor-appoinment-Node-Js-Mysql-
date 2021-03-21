@@ -6,12 +6,14 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared-module/shared.module';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { PatientSignupComponent } from './signup/patient-signup.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
+    PatientSignupComponent,
   ],
   imports: [CommonModule, AuthRoutingModule, SharedModule],
 })

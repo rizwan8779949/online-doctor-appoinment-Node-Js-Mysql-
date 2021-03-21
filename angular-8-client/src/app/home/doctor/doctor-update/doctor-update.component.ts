@@ -11,11 +11,11 @@ import { SnackBarService } from 'src/app/shared-module/Services/snackBar/snack-b
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
-  selector: 'app-member-update',
-  templateUrl: './member-update.component.html',
-  styleUrls: ['./member-update.component.scss'],
+  selector: 'app-doctor-update',
+  templateUrl: './doctor-update.component.html',
+  styleUrls: ['./doctor-update.component.scss'],
 })
-export class MemberUpdateComponent implements OnInit {
+export class DoctorUpdateComponent implements OnInit {
   form: FormGroup;
   requestSentBoolean: Boolean = false;
   constructor(
@@ -23,7 +23,7 @@ export class MemberUpdateComponent implements OnInit {
     private utils: UtilsService,
     private formBuilder: FormBuilder,
     private snackBarService: SnackBarService,
-    private dialogRef: MatDialogRef<MemberUpdateComponent>,
+    private dialogRef: MatDialogRef<DoctorUpdateComponent>,
     @Inject(MAT_DIALOG_DATA) public data
   ) {}
   ngOnInit() {
@@ -38,18 +38,18 @@ export class MemberUpdateComponent implements OnInit {
     this.closeDialog();
   }
 
-  memberFormValid() {
+  formValid() {
     if (this.form.valid) {
-      this.editMemberApi();
+      this.editDoctorApi();
     }
   }
-  editMemberApi() {
+  editDoctorApi() {
     if (!this.requestSentBoolean) {
       this.requestSentBoolean = true;
       this.api.commonUpdateMethod(null, this.form.value, '').subscribe(
         (res: any) => {
           this.requestSentBoolean = false;
-          this.snackBarService.success(res['msg']);
+          this.snackBarService.success(res['message']);
           this.closeDialog();
           this.form.reset();
         },

@@ -11,11 +11,11 @@ import { SnackBarService } from 'src/app/shared-module/Services/snackBar/snack-b
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
-  selector: 'app-member-delete',
-  templateUrl: './member-delete.component.html',
-  styleUrls: ['./member-delete.component.scss'],
+  selector: 'app-doctor-delete',
+  templateUrl: './doctor-delete.component.html',
+  styleUrls: ['./doctor-delete.component.scss'],
 })
-export class MemberDeleteComponent implements OnInit {
+export class DoctorDeleteComponent implements OnInit {
   id;
   requestSentBoolean: Boolean = false;
   constructor(
@@ -23,16 +23,16 @@ export class MemberDeleteComponent implements OnInit {
     private utils: UtilsService,
     private formBuilder: FormBuilder,
     private snackBarService: SnackBarService,
-    private dialogRef: MatDialogRef<MemberDeleteComponent>,
+    private dialogRef: MatDialogRef<DoctorDeleteComponent>,
     @Inject(MAT_DIALOG_DATA) public data
   ) {}
   ngOnInit(): void {
     this.id = this.data._id;
   }
-  deleteMember() {
+  deleteDoctor() {
     this.api.commonDeleteMethod(this.id, '').subscribe(
       (res: any) => {
-        this.snackBarService.success(res['msg']);
+        this.snackBarService.success(res['message']);
         this.dialogRef.close();
       },
       (err: any) => {

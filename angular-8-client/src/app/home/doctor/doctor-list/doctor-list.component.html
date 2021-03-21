@@ -5,7 +5,7 @@
       Member List <span *ngIf="totalElements">({{ totalElements }})</span>
     </div> -->
     <div class="add-buttons">
-      <label class="add-button-label" (click)="addMemberModal()"
+      <label class="add-button-label" (click)="addDoctorModal()"
         >+ Add Member</label
       >
     </div>
@@ -35,24 +35,24 @@
             <td>
               <div class="icons mobile-view">
                 <mat-icon
-                  (click)="editMemberModal(data)"
+                  (click)="editDoctorModal(data)"
                   class="mr-2 cursor-pointer"
                   >edit</mat-icon
                 >
                 <mat-icon
-                  (click)="deleteMemberModal(data)"
+                  (click)="deleteDoctorModal(data)"
                   class="cursor-pointer"
                   >delete</mat-icon
                 >
               </div>
               <div class="icons web-view">
                 <mat-icon
-                  (click)="editMemberModal(data)"
+                  (click)="editDoctorModal(data)"
                   class="mr-4 cursor-pointer"
                   >edit</mat-icon
                 >
                 <mat-icon
-                  (click)="deleteMemberModal(data)"
+                  (click)="deleteDoctorModal(data)"
                   class="cursor-pointer"
                   >delete</mat-icon
                 >

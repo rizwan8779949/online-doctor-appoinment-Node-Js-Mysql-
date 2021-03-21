@@ -18,9 +18,9 @@ const routes: Routes = [
         component: DashboardComponent,
       },
       {
-        path: 'members',
+        path: 'doctor',
         loadChildren: () =>
-          import('./member/member.module').then((m) => m.MemberModule),
+          import('./doctor/doctor.module').then((m) => m.DoctorModule),
       },
     ],
   },

@@ -12,11 +12,14 @@ module.exports = (app) => {
   // Retrieve a single Patient with id
   router.get("/profile:id", patient.findOne);
 
+  // Retrieve a single Patient with id
+  router.get("/findByPhoneNo", patient.findByPhoneNo);
+
   // Update a Patient with id
   router.put("/edit:id", patient.update);
 
   // Delete a Patient with id
   router.delete("/delete:id", patient.delete);
 
-  app.use("/api/patients", router);
+  app.use("/api/patient", router);
 };

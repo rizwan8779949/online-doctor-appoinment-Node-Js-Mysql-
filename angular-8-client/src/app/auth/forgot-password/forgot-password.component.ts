@@ -63,7 +63,7 @@ export class ForgotPasswordComponent implements OnInit {
           // this.mailSendSuccessfully = true;
           this.forgotPasswordSentMailBoolean = false;
           this.loginService.setEditData(res.data.resetToken);
-          this.snackBarService.success(res['msg']);
+          this.snackBarService.success(res['message']);
           this.goto('auth/reset-password');
         },
         (err: any) => {

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Form-Filling": {
+    "Online-Doctor-Appoinment": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,16 +17,13 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/Form-Filling",
+            "outputPath": "dist/Online-Doctor-Appoinment",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
@@ -67,18 +64,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Form-Filling:build"
+            "browserTarget": "Online-Doctor-Appoinment:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Form-Filling:build:production"
+              "browserTarget": "Online-Doctor-Appoinment:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Form-Filling:build"
+            "browserTarget": "Online-Doctor-Appoinment:build"
           }
         },
         "test": {
@@ -88,10 +85,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
@@ -107,27 +101,25 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "Form-Filling:serve"
+            "devServerTarget": "Online-Doctor-Appoinment:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "Form-Filling:serve:production"
+              "devServerTarget": "Online-Doctor-Appoinment:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "Form-Filling",
+  "defaultProject": "Online-Doctor-Appoinment",
   "cli": {
     "analytics": "2b6b4377-34c0-4ddc-b677-b85ec6d16167"
   }

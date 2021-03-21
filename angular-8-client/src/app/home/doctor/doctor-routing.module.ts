@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { FormSubmitComponent } from './form-submit/form-submit.component';
-
+import { DoctorListComponent } from './doctor-list/doctor-list.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'submit-form',
-    pathMatch: 'full',
+    redirectTo: 'doctor-list',
+    component: DoctorListComponent,
   },
   {
-    path: 'submit-form',
-    component: FormSubmitComponent,
+    path: 'doctor-list',
+    component: DoctorListComponent,
   },
 ];
 
@@ -18,4 +17,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class FormRoutingModule {}
+export class DoctorRoutingModule {}

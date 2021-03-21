@@ -4,16 +4,16 @@ import { UtilsService } from 'src/app/shared-module/Services/utils/utils.service
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
-import { MemberAddComponent } from '../member-add/member-add.component';
-import { MemberUpdateComponent } from '../member-update/member-update.component';
-import { MemberDeleteComponent } from '../member-delete/member-delete.component';
+import { DoctorAddComponent } from '../doctor-add/doctor-add.component';
+import { DoctorUpdateComponent } from '../doctor-update/doctor-update.component';
+import { DoctorDeleteComponent } from '../doctor-delete/doctor-delete.component';
 import { SnackBarService } from 'src/app/shared-module/Services/snackBar/snack-bar.service';
 @Component({
-  selector: 'app-member-list',
-  templateUrl: './member-list.component.html',
-  styleUrls: ['./member-list.component.scss'],
+  selector: 'app-doctor-list',
+  templateUrl: './doctor-list.component.html',
+  styleUrls: ['./doctor-list.component.scss'],
 })
-export class MemberListComponent implements OnInit {
+export class DoctorListComponent implements OnInit {
   constructor(
     private api: ApiService,
     private utils: UtilsService,
@@ -50,8 +50,8 @@ export class MemberListComponent implements OnInit {
     this.page = 1;
     this.getPaginationList();
   }
-  addMemberModal() {
-    const dialogRef = this.dialog.open(MemberAddComponent, {
+  addDoctorModal() {
+    const dialogRef = this.dialog.open(DoctorAddComponent, {
       disableClose: true,
       width: '350px',
       height: '100%',
@@ -63,8 +63,8 @@ export class MemberListComponent implements OnInit {
       this.refreshList();
     });
   }
-  editMemberModal(data) {
-    const dialogRef = this.dialog.open(MemberUpdateComponent, {
+  editDoctorModal(data) {
+    const dialogRef = this.dialog.open(DoctorUpdateComponent, {
       disableClose: true,
       width: '350px',
       height: '100%',
@@ -77,8 +77,8 @@ export class MemberListComponent implements OnInit {
       this.refreshList();
     });
   }
-  deleteMemberModal(data) {
-    const dialogRef = this.dialog.open(MemberDeleteComponent, {
+  deleteDoctorModal(data) {
+    const dialogRef = this.dialog.open(DoctorDeleteComponent, {
       disableClose: true,
       data: data,
     });

@@ -6,18 +6,16 @@
         class="global-shadow login-mat-card p-3 custom-bg-white rounded-border"
       >
         <div class="logo-box">
-          <img src="assets/png/logo.png" class="logo-image" />
+          <img src="assets/png/doctor-logo.png" class="logo-image" />
         </div>
         <br />
         <form [formGroup]="form" (ngSubmit)="checkLoginData()">
-          <mat-form-field class="example-full-width input-size">
-            <input
-              matInput
-              type="text"
-              placeholder="Username"
-              formControlName="userName"
-              required
-            />
+          <mat-form-field
+            class="example-full-width input-size"
+            appearance="outline"
+          >
+            <mat-label>Username</mat-label>
+            <input matInput type="text" formControlName="userName" required />
             <mat-error
               *ngIf="
                 form.controls['userName'].errors?.required &&
@@ -28,7 +26,6 @@
               Username is required
             </mat-error>
           </mat-form-field>
-          <br />
           <!-- <mat-form-field class="example-full-width input-size">
             <mat-select placeholder="Role" formControlName="role" required>
               <mat-option *ngFor="let data of roleNames" [value]="data.value">
@@ -44,12 +41,15 @@
               Role is required
             </mat-error>
           </mat-form-field> -->
-          <br />
-          <mat-form-field class="example-full-width input-size">
+
+          <mat-form-field
+            class="example-full-width input-size"
+            appearance="outline"
+          >
+            <mat-label>Password</mat-label>
             <input
               matInput
               type="password"
-              placeholder="Password"
               formControlName="password"
               required
             />
@@ -65,7 +65,9 @@
           </mat-form-field>
 
           <div class="forgot-password-link-2">
-            <span (click)="goto('stats')">form submit ?</span>
+            <span (click)="goto('auth/patient-signup')"
+              >Signup for patient ?</span
+            >
           </div>
           <br />
           <div>
@@ -74,6 +76,7 @@
               class="before-login-button"
               value="Login"
               [disabled]="loginButtonDisabled"
+              mat-button
             />
           </div>
         </form>

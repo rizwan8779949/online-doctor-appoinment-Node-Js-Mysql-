@@ -8,7 +8,7 @@ export class SnackBarService {
   constructor(private snackBar: MatSnackBar) {}
   success(message) {
     this.snackBar.open(message, 'Close', {
-      duration: 5000,
+      duration: 10000,
       verticalPosition: 'top',
       horizontalPosition: 'end',
       panelClass: ['success-toaster'],
@@ -17,7 +17,7 @@ export class SnackBarService {
 
   error(message) {
     this.snackBar.open(message, 'Close', {
-      duration: 5000,
+      duration: 10000,
       verticalPosition: 'top',
       horizontalPosition: 'end',
       panelClass: ['error-toaster'],

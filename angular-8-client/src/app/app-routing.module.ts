@@ -16,14 +16,8 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () =>
-      import('./dashboard/home.module').then((m) => m.HomeModule),
+    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
     canActivate: [LoginSucesssGuard],
-  },
-  {
-    path: 'stats',
-    loadChildren: () =>
-      import('./form/form-submit.module').then((m) => m.FormSubmitModule),
   },
 ];
 
