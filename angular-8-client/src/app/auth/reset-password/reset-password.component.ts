@@ -56,7 +56,7 @@ export class ResetPasswordComponent implements OnInit {
         },
         (err: any) => {
           this.resetPasswordBoolean = false;
-          this.snackBarService.error(err.error.message);
+          this.snackBarService.error(err?.error?.message);
         }
       );
     }

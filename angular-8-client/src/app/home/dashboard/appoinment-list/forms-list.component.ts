@@ -7,6 +7,6 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class FormsListComponent implements OnInit {
   constructor() {}
-  @Input() formList = new Array();
+  @Input() appintmentList = new Array();
   ngOnInit(): void {}
 }

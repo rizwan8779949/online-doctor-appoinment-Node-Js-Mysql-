@@ -1,21 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
-import { HomeComponent } from './side-nav/home.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { SideNavComponent } from './side-nav/side-nav.component';
 import { SharedModule } from '../shared-module/shared.module';
-import { FormsModule } from '@angular/forms';
-import { CountsComponent } from './dashboard/counts/counts.component';
-import { FormsListComponent } from './dashboard/forms-list/forms-list.component';
 
 @NgModule({
-  declarations: [
-    HomeComponent,
-    DashboardComponent,
-    CountsComponent,
-    FormsListComponent,
-  ],
+  declarations: [SideNavComponent],
   imports: [CommonModule, HomeRoutingModule, SharedModule],
-  exports: [DashboardComponent],
+  exports: [],
 })
 export class HomeModule {}

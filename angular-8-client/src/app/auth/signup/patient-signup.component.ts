@@ -55,7 +55,7 @@ export class PatientSignupComponent implements OnInit {
         },
         (err: any) => {
           this.loading = false;
-          this.snackBarService.error(err.error.message);
+          this.snackBarService.error(err?.error?.message);
         }
       );
     }
@@ -80,7 +80,7 @@ export class PatientSignupComponent implements OnInit {
         },
         (err: any) => {
           this.loading = false;
-          this.snackBarService.error(err.error.message);
+          this.snackBarService.error(err?.error?.message);
         }
       );
   }

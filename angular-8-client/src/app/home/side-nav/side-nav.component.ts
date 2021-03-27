@@ -4,11 +4,11 @@ import { UtilsService } from 'src/app/shared-module/Services/utils/utils.service
 import { MatDialog } from '@angular/material/dialog';
 import { LogoutModalComponent } from '../../shared-module/Components/logout-modal/logout-modal.component';
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  selector: 'app-side-nav',
+  templateUrl: './side-nav.component.html',
+  styleUrls: ['./side-nav.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class SideNavComponent implements OnInit {
   constructor(
     private router: Router,
     private utils: UtilsService,

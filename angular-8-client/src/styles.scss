@@ -75,6 +75,12 @@ body {
 }
 .margin-top-table-dashboard {
   margin-top: 80px;
+  display: flex;
+  .sub-heading-on-module {
+    width: 50%;
+    font-size: 20px;
+    font-weight: 500;
+  }
 }
 .table-border-top th {
   border-top: none;
@@ -132,6 +138,23 @@ td {
 .rounded-border {
   border-radius: 10px;
 }
+.mat-form-field-infix {
+  padding: 10px 0px !important;
+  margin-top: -5px;
+  border-radius: 5px;
+}
+.mat-form-field-appearance-outline .mat-form-field-prefix,
+.mat-form-field-appearance-outline .mat-form-field-suffix {
+  right: -2%;
+}
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  color: none !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-wrapper {
+  margin: 0 !important;
+}
+
 @media only screen and (max-width: 600px) {
   .table-list-container {
     overflow: auto;

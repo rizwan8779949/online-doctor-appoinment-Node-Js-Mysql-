@@ -1,0 +1,43 @@
+<div class="wrapper">
+  <!-- Sidebar  -->
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo-box">
+        <img src="assets/png/side-nav-logo.png" class="logo-image" />
+      </div>
+    </div>
+
+    <ul class="list-unstyled components ul-height-overflow">
+      <li>
+        <a [routerLink]="['dashboard']" routerLinkActive="active-router">
+          <span matTooltip="Dashboard"> Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['doctor']" routerLinkActive="active-router">
+          <span matTooltip="Doctor">Doctor</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['patient']" routerLinkActive="active-router">
+          <span matTooltip="Patient"> Patient</span>
+        </a>
+      </li>
+      <li class="log-out-option">
+        <a class="cursor-pointer" (click)="openPopLogout()">
+          <span matTooltip="Logout"> Logout</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div id="content">
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  </div>
+</div>
+<div class="loader" *ngIf="loading">
+  <div>
+    <mat-spinner> </mat-spinner>
+  </div>
+</div>

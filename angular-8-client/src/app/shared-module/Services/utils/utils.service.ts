@@ -34,8 +34,8 @@ export class UtilsService {
 
   getToken() {
     if (localStorage.getItem(environment.userData)) {
-      this.token = JSON.parse(localStorage.getItem(environment.userData));
-      return this.token.token;
+      // this.token = JSON.parse(localStorage.getItem(environment.userData));
+      return this.token?.token;
     }
   }
   getUserDetailsLogin() {

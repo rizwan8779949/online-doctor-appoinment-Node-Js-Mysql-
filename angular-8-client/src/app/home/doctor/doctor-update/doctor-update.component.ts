@@ -10,6 +10,7 @@ import {
 import { SnackBarService } from 'src/app/shared-module/Services/snackBar/snack-bar.service';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DoctorService } from 'src/app/shared-module/Services/doctor/doctor.service';
 @Component({
   selector: 'app-doctor-update',
   templateUrl: './doctor-update.component.html',
@@ -18,18 +19,36 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class DoctorUpdateComponent implements OnInit {
   form: FormGroup;
   requestSentBoolean: Boolean = false;
+  specialistTypeArrayList = this.doctorService.specialistTypeArrayList;
+  allTimes = this.doctorService.allTimes;
   constructor(
     private api: ApiService,
     private utils: UtilsService,
     private formBuilder: FormBuilder,
     private snackBarService: SnackBarService,
     private dialogRef: MatDialogRef<DoctorUpdateComponent>,
-    @Inject(MAT_DIALOG_DATA) public data
+    @Inject(MAT_DIALOG_DATA) public data,
+    private doctorService: DoctorService
   ) {}
   ngOnInit() {
     this.form = this.formBuilder.group({
-      name: [this.data.name, Validators.required],
-      phoneNumber: [this.data.phoneNumber, Validators.required],
+      doctorName: [null, Validators.required],
+      phoneNo: [null, Validators.required],
+      emailId: [
+        null,
+        [
+          Validators.required,
+          Validators.email,
+          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+        ],
+      ],
+      address: [null, Validators.required],
+      password: [null, Validators.required],
+      consultantFees: [0, Validators.required],
+      workingTime: [null, Validators.required],
+      startTime: [null, Validators.required],
+      endTime: [null, Validators.required],
+      specialistType: [null, Validators.required],
     });
   }
 
@@ -55,7 +74,7 @@ export class DoctorUpdateComponent implements OnInit {
         },
         (err: any) => {
           this.requestSentBoolean = false;
-          this.snackBarService.error(err.error.message);
+          this.snackBarService.error(err?.error?.message);
         }
       );
     }

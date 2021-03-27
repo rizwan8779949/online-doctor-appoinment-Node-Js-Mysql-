@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {
   MatFormFieldControl,
   MatFormFieldModule,
+  MAT_FORM_FIELD_DEFAULT_OPTIONS,
 } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -32,6 +33,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackBarService } from './Services/snackBar/snack-bar.service';
 import { LogoutModalComponent } from './Components/logout-modal/logout-modal.component';
+import { MatSelectModule } from '@angular/material/select';
+import { DoctorService } from './Services/doctor/doctor.service';
 @NgModule({
   declarations: [HeaderPartComponent, FooterComponent, LogoutModalComponent],
   imports: [
@@ -54,9 +57,11 @@ import { LogoutModalComponent } from './Components/logout-modal/logout-modal.com
     MatTooltipModule,
     MatSnackBarModule,
     MatOptionModule,
+    MatSelectModule,
   ],
   exports: [
     ReactiveFormsModule,
+    FormsModule,
     MatDialogModule,
     MatButtonModule,
     MatFormFieldModule,
@@ -74,6 +79,7 @@ import { LogoutModalComponent } from './Components/logout-modal/logout-modal.com
     MatTooltipModule,
     MatSnackBarModule,
     MatOptionModule,
+    MatSelectModule,
   ],
   providers: [
     ApiService,
@@ -81,10 +87,15 @@ import { LogoutModalComponent } from './Components/logout-modal/logout-modal.com
     UtilsService,
     DatePickerService,
     SnackBarService,
+    DoctorService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,
       multi: true,
+    },
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'fill' },
     },
   ],
   entryComponents: [LogoutModalComponent],

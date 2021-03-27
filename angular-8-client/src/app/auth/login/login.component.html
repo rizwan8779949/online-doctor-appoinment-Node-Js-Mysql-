@@ -26,21 +26,26 @@
               Username is required
             </mat-error>
           </mat-form-field>
-          <!-- <mat-form-field class="example-full-width input-size">
-            <mat-select placeholder="Role" formControlName="role" required>
+          <mat-form-field
+            class="example-full-width input-size"
+            appearance="outline"
+          >
+            <mat-label>Role</mat-label>
+            <mat-select formControlName="roleName">
               <mat-option *ngFor="let data of roleNames" [value]="data.value">
                 {{ data.viewValue }}
               </mat-option>
             </mat-select>
             <mat-error
               *ngIf="
-                form.controls['role'].errors?.required &&
-                (form.controls['role']?.dirty || form.controls['role']?.touched)
+                form.controls['roleName'].errors?.required &&
+                (form.controls['roleName']?.dirty ||
+                  form.controls['roleName']?.touched)
               "
             >
               Role is required
             </mat-error>
-          </mat-form-field> -->
+          </mat-form-field>
 
           <mat-form-field
             class="example-full-width input-size"

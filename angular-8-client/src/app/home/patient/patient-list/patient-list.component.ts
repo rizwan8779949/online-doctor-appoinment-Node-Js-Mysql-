@@ -4,16 +4,16 @@ import { UtilsService } from 'src/app/shared-module/Services/utils/utils.service
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
-import { DoctorAddComponent } from '../doctor-add/doctor-add.component';
-import { DoctorUpdateComponent } from '../doctor-update/doctor-update.component';
-import { DoctorDeleteComponent } from '../doctor-delete/doctor-delete.component';
+import { PatientAddComponent } from '../patient-add/patient-add.component';
+import { PatientDeleteComponent } from '../patient-delete/patient-delete.component';
 import { SnackBarService } from 'src/app/shared-module/Services/snackBar/snack-bar.service';
+import { PatientUpdateComponent } from '../patient-update/patient-update.component';
 @Component({
-  selector: 'app-doctor-list',
-  templateUrl: './doctor-list.component.html',
-  styleUrls: ['./doctor-list.component.scss'],
+  selector: 'app-patient-list',
+  templateUrl: './patient-list.component.html',
+  styleUrls: ['./patient-list.component.scss'],
 })
-export class DoctorListComponent implements OnInit {
+export class PatientListComponent implements OnInit {
   constructor(
     private api: ApiService,
     private utils: UtilsService,
@@ -47,7 +47,7 @@ export class DoctorListComponent implements OnInit {
     // this.getPaginationList();
   }
   addModal() {
-    const dialogRef = this.dialog.open(DoctorAddComponent, {
+    const dialogRef = this.dialog.open(PatientAddComponent, {
       disableClose: true,
       width: '350px',
       height: '100%',
@@ -60,7 +60,7 @@ export class DoctorListComponent implements OnInit {
     });
   }
   editModal(data) {
-    const dialogRef = this.dialog.open(DoctorUpdateComponent, {
+    const dialogRef = this.dialog.open(PatientUpdateComponent, {
       disableClose: true,
       width: '350px',
       height: '100%',
@@ -74,7 +74,7 @@ export class DoctorListComponent implements OnInit {
     });
   }
   deleteModal(data) {
-    const dialogRef = this.dialog.open(DoctorDeleteComponent, {
+    const dialogRef = this.dialog.open(PatientDeleteComponent, {
       disableClose: true,
       data: data,
     });

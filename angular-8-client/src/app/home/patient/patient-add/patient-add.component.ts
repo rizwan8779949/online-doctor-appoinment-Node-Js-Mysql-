@@ -9,28 +9,24 @@ import {
 } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SnackBarService } from 'src/app/shared-module/Services/snackBar/snack-bar.service';
-import { DoctorService } from 'src/app/shared-module/Services/doctor/doctor.service';
 @Component({
-  selector: 'app-doctor-add',
-  templateUrl: './doctor-add.component.html',
-  styleUrls: ['./doctor-add.component.scss'],
+  selector: 'app-patient-add',
+  templateUrl: './patient-add.component.html',
+  styleUrls: ['./patient-add.component.scss'],
 })
-export class DoctorAddComponent implements OnInit {
+export class PatientAddComponent implements OnInit {
   form: FormGroup;
-  specialistTypeArrayList = this.doctorService.specialistTypeArrayList;
-  allTimes = this.doctorService.allTimes;
   requestSentBoolean: Boolean = false;
   constructor(
     private api: ApiService,
     private utils: UtilsService,
     private formBuilder: FormBuilder,
     private snackBarService: SnackBarService,
-    private doctorService: DoctorService,
-    private dialogRef: MatDialogRef<DoctorAddComponent>
+    private dialogRef: MatDialogRef<PatientAddComponent>
   ) {}
   ngOnInit() {
     this.form = this.formBuilder.group({
-      doctorName: [null, Validators.required],
+      patientName: [null, Validators.required],
       phoneNo: [null, Validators.required],
       emailId: [
         null,
@@ -42,11 +38,6 @@ export class DoctorAddComponent implements OnInit {
       ],
       address: [null, Validators.required],
       password: [null, Validators.required],
-      consultantFees: [0, Validators.required],
-      workingTime: [null, Validators.required],
-      startTime: [null, Validators.required],
-      endTime: [null, Validators.required],
-      specialistType: [null, Validators.required],
     });
   }
 
@@ -57,10 +48,10 @@ export class DoctorAddComponent implements OnInit {
 
   formValid() {
     if (this.form.valid) {
-      this.addDoctorApi();
+      this.addPatientApi();
     }
   }
-  addDoctorApi() {
+  addPatientApi() {
     if (!this.requestSentBoolean) {
       this.requestSentBoolean = true;
       this.api.commonPostMethod(this.form.value, '').subscribe(

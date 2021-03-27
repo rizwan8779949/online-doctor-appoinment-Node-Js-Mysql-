@@ -53,7 +53,7 @@ export class HeaderPartComponent implements OnInit {
       },
       (err: any) => {
         this.utils.stopLoading();
-        this.snackBarService.error(err.error.message);
+        this.snackBarService.error(err?.error?.message);
       }
     );
   }

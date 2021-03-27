@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './side-nav/home.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-
+import { SideNavComponent } from './side-nav/side-nav.component';
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: SideNavComponent,
     children: [
       {
         path: '',
@@ -15,12 +13,18 @@ const routes: Routes = [
       },
       {
         path: 'dashboard',
-        component: DashboardComponent,
+        loadChildren: () =>
+          import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
       },
       {
         path: 'doctor',
         loadChildren: () =>
           import('./doctor/doctor.module').then((m) => m.DoctorModule),
+      },
+      {
+        path: 'patient',
+        loadChildren: () =>
+          import('./patient/patient.module').then((m) => m.PatientModule),
       },
     ],
   },

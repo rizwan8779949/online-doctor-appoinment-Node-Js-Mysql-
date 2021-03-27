@@ -68,7 +68,7 @@ export class ForgotPasswordComponent implements OnInit {
         },
         (err: any) => {
           this.forgotPasswordSentMailBoolean = false;
-          this.snackBarService.error(err.error.message);
+          this.snackBarService.error(err?.error?.message);
         }
       );
     }

@@ -1,0 +1,17 @@
+<div class="container-fluid">
+  <app-header-part></app-header-part>
+
+  <div class="main-heading margin-top-table-dashboard mb-5">
+    <div class="row mt-4">
+      <div class="col-md-4 p-0">
+        <app-dashboard-counts
+          [appinments]="dashbaordDto.appinments"
+          [doctor]="dashbaordDto.doctor"
+        ></app-dashboard-counts>
+      </div>
+      <div class="col-md-8">
+        <app-forms-list [appintmentList]="appintmentList"></app-forms-list>
+      </div>
+    </div>
+  </div>
+</div>

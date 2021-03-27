@@ -12,11 +12,11 @@
           <span>Signup for patient </span>
         </div>
         <form [formGroup]="form" (ngSubmit)="checksubmitFormData()">
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Name</mat-label>
             <input
               matInput
               type="text"
-              placeholder="Name"
               formControlName="patientName"
               required
             />
@@ -30,11 +30,11 @@
               Patient Name is required
             </mat-error>
           </mat-form-field>
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Phone No.</mat-label>
             <input
               matInput
               type="number"
-              placeholder="Phone Number"
               formControlName="phoneNo"
               pattern="^[6-9]\d{9}$"
               onnkeydown="javascript: return event.keyCode == 69 ? false : true"
@@ -62,14 +62,9 @@
             </mat-error>
           </mat-form-field>
 
-          <mat-form-field class="example-full-width">
-            <input
-              matInput
-              type="text"
-              placeholder="Email"
-              formControlName="emailId"
-              required
-            />
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="text" formControlName="emailId" required />
             <mat-error
               *ngIf="
                 form.controls['emailId'].errors?.required &&
@@ -83,11 +78,11 @@
               Email not Valid
             </mat-error>
           </mat-form-field>
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Address</mat-label>
             <textarea
               matInput
               type="text"
-              placeholder="Address"
               formControlName="address"
               required
             ></textarea>
@@ -101,11 +96,11 @@
               Address is required
             </mat-error>
           </mat-form-field>
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Password</mat-label>
             <input
               matInput
-              type="text"
-              placeholder="Password"
+              type="password"
               formControlName="password"
               minlength="6"
               required
@@ -130,7 +125,7 @@
           </mat-form-field>
 
           <div class="forgot-password-link-2">
-            <span (click)="goto('auth/login')">already signup ?</span>
+            <span (click)="goto('auth/login')">Already signup ?</span>
           </div>
           <div class="mt-2">
             <input type="submit" class="before-login-button" value="Submit" />
