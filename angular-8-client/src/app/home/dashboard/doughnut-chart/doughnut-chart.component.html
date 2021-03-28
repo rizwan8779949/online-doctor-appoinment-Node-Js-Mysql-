@@ -1,0 +1,14 @@
+<div class="current-booking-text">Appoinment Chart</div>
+<div class="chart-contain-doughnutChart">
+  <canvas
+    baseChart
+    [data]="doughnutChartDataFromApiCounts"
+    [labels]="doughnutChartLabels"
+    [colors]="doughnutChartColors"
+    [options]="chartOptions"
+    [legend]="doughnutChartLegend"
+    [chartType]="'doughnut'"
+  >
+  </canvas>
+  <br />
+</div>

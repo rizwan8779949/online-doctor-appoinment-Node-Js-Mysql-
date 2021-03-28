@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
   ) {}
   dashbaordDto = new DashboardData();
   appintmentList = new Array();
+
   ngOnInit() {
     // this.getDashBoardData();
   }
@@ -41,7 +42,8 @@ export class DashboardComponent implements OnInit {
   }
 }
 export class DashboardData {
-  appinments;
-  doctor;
-  patients;
+  bookedAppooinment;
+  unBookedAppoinment;
+  doughnutChartDataFromApiLabel = ['Booked Appoinment', 'Unbooked Appoinment'];
+  doughnutChartDataFromApiCounts = [10, 30];
 }

@@ -13,14 +13,19 @@
           <span matTooltip="Dashboard"> Dashboard</span>
         </a>
       </li>
-      <li>
+      <li *ngIf="userDetails?.loginData?.roleName == 'Staff'">
         <a [routerLink]="['doctor']" routerLinkActive="active-router">
           <span matTooltip="Doctor">Doctor</span>
         </a>
       </li>
-      <li>
+      <li *ngIf="userDetails?.loginData?.roleName == 'Staff'">
         <a [routerLink]="['patient']" routerLinkActive="active-router">
           <span matTooltip="Patient"> Patient</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['appointment']" routerLinkActive="active-router">
+          <span matTooltip="Appoinment"> Appoinment</span>
         </a>
       </li>
       <li class="log-out-option">

@@ -24,10 +24,10 @@
             >
           </td>
           <td class="table-list-highlighted-text">
-            <span *ngIf="data.patientName" [matTooltip]="data.member.name">
-              <span *ngIf="data.member.name">
+            <span *ngIf="data.doctorName" [matTooltip]="data.doctorName">
+              <span *ngIf="data.doctorName">
                 {{ data.member.name | titlecase | slice: 0:18 }}
-                <span *ngIf="data.member.name.length > 18">...</span>
+                <span *ngIf="data.doctorName.length > 18">...</span>
               </span></span
             >
           </td>
@@ -41,7 +41,7 @@
 
       <tbody *ngIf="appintmentList.length == 0">
         <tr>
-          <td colspan="100%">No Appinment Available</td>
+          <td colspan="100%">No Appoinment Available</td>
         </tr>
       </tbody>
     </table>

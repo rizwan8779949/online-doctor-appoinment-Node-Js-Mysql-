@@ -1,0 +1,69 @@
+<div class="container-fluid">
+  <app-header-part></app-header-part>
+  <div class="margin-top-table-dashboard">
+    <div class="sub-heading-on-module">
+      Appoinment List <span>({{ listDto?.length }})</span>
+    </div>
+    <div class="add-buttons">
+      <label class="add-button-label" (click)="addModal()"
+        >+ Add Appoinment</label
+      >
+    </div>
+  </div>
+
+  <div
+    class="custom-bg-white global-rounded custom-box-shadow table-overflow-auto mt-2 mb-5"
+  >
+    <div class="table-custom-responsive table-list-container">
+      <table class="table table-list">
+        <thead class="table-border-top">
+          <tr>
+            <th>Patient Name</th>
+            <th>Doctor Name</th>
+            <th>Date Of Apply</th>
+            <th>Status</th>
+            <th>Description</th>
+            <th>Appoinment Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody *ngIf="listDto.length > 0">
+          <tr *ngFor="let data of listDto">
+            <td class="table-list-highlighted-text">
+              <span *ngIf="data.patientName" [matTooltip]="data.patientName">
+                <span *ngIf="data.patientName">
+                  {{ data.patientName.name | titlecase | slice: 0:18 }}
+                  <span *ngIf="data.patientName.length > 18">...</span>
+                </span></span
+              >
+            </td>
+            <td class="table-list-highlighted-text">
+              <span *ngIf="data.doctorName" [matTooltip]="data.doctorName">
+                <span *ngIf="data.doctorName">
+                  {{ data.member.name | titlecase | slice: 0:18 }}
+                  <span *ngIf="data.doctorName.length > 18">...</span>
+                </span></span
+              >
+            </td>
+            <td>{{ data.dateOfApply }}</td>
+            <td>{{ data.status }}</td>
+            <td>{{ data.description }}</td>
+            <td>{{ data.visitor }}</td>
+            <td>{{ data.appoinmentDateAndTime }}</td>
+          </tr>
+        </tbody>
+
+        <tbody *ngIf="listDto.length == 0">
+          <tr>
+            <td colspan="100%">No Appoinment Available</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <mat-paginator [length]="0" [pageSize]="10" (page)="paginationView($event)">
+    </mat-paginator>
+  </div>
+
+  <!-- </div> -->
+</div>

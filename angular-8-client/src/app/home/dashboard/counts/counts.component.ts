@@ -15,10 +15,8 @@ import { UtilsService } from 'src/app/shared-module/Services/utils/utils.service
   styleUrls: ['./counts.component.scss'],
 })
 export class CountsComponent implements OnInit {
-  @Input() appinments;
-  @Input() doctor;
-  @Input() patients;
-  @Input() visitor;
+  @Input() bookedAppooinment;
+  @Input() unBookedAppoinment;
   constructor(private router: Router, private utils: UtilsService) {}
 
   ngOnInit(): void {}

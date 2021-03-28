@@ -21,7 +21,6 @@ export class PatientSignupComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {}
   loading: Boolean = false;
-  alreadyExistBolean = null;
   ngOnInit() {
     this.form = this.formBuilder.group({
       patientName: [null, Validators.required],
@@ -74,13 +73,15 @@ export class PatientSignupComponent implements OnInit {
       .subscribe(
         (res: any) => {
           this.loading = false;
-
-          this.snackBarService.success(res['message']);
+          this.submitLoginData();
+          this.snackBarService.success('Signup Successfully');
+          this.goto('auth/login');
           this.form.reset();
         },
         (err: any) => {
           this.loading = false;
-          this.snackBarService.error(err?.error?.message);
+          if (err?.error?.message == 'Validation error')
+            this.snackBarService.error('Phone No. already exists.');
         }
       );
   }
@@ -92,12 +93,10 @@ export class PatientSignupComponent implements OnInit {
       this.api
         .commonGetMethod(params, 'patient/findByPhoneNo')
         .subscribe((res: any) => {
-          if (res?.data) this.alreadyExistBolean = 'alreadyExist';
+          if (res?.data)
+            this.snackBarService.error('Phone No. already exists.');
           else {
-            this.alreadyExistBolean = false;
-            this.submitLoginData();
-            this.snackBarService.success('Signup Successfully');
-            this.goto('auth/login');
+            this.createSaveSignUpDataForLogin();
           }
         });
     }

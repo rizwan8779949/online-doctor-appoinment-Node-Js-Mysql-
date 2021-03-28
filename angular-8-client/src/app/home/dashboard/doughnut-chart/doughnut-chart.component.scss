@@ -1,0 +1,33 @@
+@import "../../../../scss/variable.scss";
+.doughnutChart-counts {
+  display: flex;
+  font-weight: 900;
+  font-size: 12px;
+  color: #1371ee;
+  padding-top: 10px;
+  text-align: center;
+  .col-lg-4:first-child {
+    color: #67ca57;
+  }
+  .col-lg-4:last-child {
+    color: #ff7676;
+  }
+}
+.chart-contain-doughnutChart {
+  width: 170px;
+  height: 125px;
+  display: block;
+  padding: 15px 0px 0px 0px;
+}
+.current-booking-text {
+  display: flex;
+  font-weight: bold;
+  font-size: 14px;
+  color: $backgroundColor;
+}
+@media only screen and (max-width: 600px) {
+  .chart-contain-doughnutChart {
+    width: 330px;
+    height: 210px;
+  }
+}

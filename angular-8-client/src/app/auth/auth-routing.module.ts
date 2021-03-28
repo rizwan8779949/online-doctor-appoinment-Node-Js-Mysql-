@@ -8,7 +8,7 @@ import { PatientSignupComponent } from './signup/patient-signup.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'patient-signup',
+    redirectTo: 'login',
     component: LoginComponent,
   },
   {

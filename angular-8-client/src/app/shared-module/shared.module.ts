@@ -35,6 +35,7 @@ import { SnackBarService } from './Services/snackBar/snack-bar.service';
 import { LogoutModalComponent } from './Components/logout-modal/logout-modal.component';
 import { MatSelectModule } from '@angular/material/select';
 import { DoctorService } from './Services/doctor/doctor.service';
+import { ChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [HeaderPartComponent, FooterComponent, LogoutModalComponent],
   imports: [
@@ -58,6 +59,7 @@ import { DoctorService } from './Services/doctor/doctor.service';
     MatSnackBarModule,
     MatOptionModule,
     MatSelectModule,
+    ChartsModule,
   ],
   exports: [
     ReactiveFormsModule,
@@ -80,6 +82,7 @@ import { DoctorService } from './Services/doctor/doctor.service';
     MatSnackBarModule,
     MatOptionModule,
     MatSelectModule,
+    ChartsModule,
   ],
   providers: [
     ApiService,

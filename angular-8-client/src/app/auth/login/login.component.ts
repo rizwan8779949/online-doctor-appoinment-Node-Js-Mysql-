@@ -24,10 +24,11 @@ export class LoginComponent implements OnInit {
   loginButtonDisabled: Boolean = false;
   loading: boolean = false;
   roleNames = [
-    { value: 'staff', viewValue: 'Staff' },
-    { value: 'doctor', viewValue: 'Doctor' },
-    { value: 'patient', viewValue: 'Patient' },
+    { value: 'Staff', viewValue: 'Staff' },
+    { value: 'Doctor', viewValue: 'Doctor' },
+    { value: 'Patient', viewValue: 'Patient' },
   ];
+  userDetails = new UserData();
   ngOnInit() {
     this.form = this.formBuilder.group({
       userName: [null, Validators.required],
@@ -47,10 +48,11 @@ export class LoginComponent implements OnInit {
         (res: any) => {
           this.loginButtonDisabled = false;
           this.loading = false;
+          this.userDetails.loginData = res?.userDetails;
           if (this.form.value.roleName == 'doctor')
             this.getUserDetais('doctors/findByPhoneNo');
           else if (this.form.value.roleName == 'patient')
-            this.getUserDetais('doctor/findByPhoneNo/');
+            this.getUserDetais('patient/findByPhoneNo');
           else if (this.form.value.roleName == 'staff') {
             // this.getUserDetais('doctor/findByPhoneNo')
           }
@@ -75,8 +77,9 @@ export class LoginComponent implements OnInit {
       (res: any) => {
         this.loginButtonDisabled = false;
         this.loading = false;
+        this.userDetails.userDetails = res?.userDetails;
         this.snackBarService.success('You have Logged in Successfullly');
-        localStorage.setItem('userData', JSON.stringify(res.userDetails));
+        localStorage.setItem('userData', JSON.stringify(this.userDetails));
         this.router.navigateByUrl('home');
       },
       (err: any) => {
@@ -86,7 +89,8 @@ export class LoginComponent implements OnInit {
     );
   }
 }
-class LoginData {
-  username;
-  password;
+class UserData {
+  userDetails;
+  loginData;
+  token = 'sfhisuyfieireuiwyrsfjiey';
 }

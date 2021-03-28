@@ -5,10 +5,25 @@
     <div class="row mt-4">
       <div class="col-md-4 p-0">
         <app-dashboard-counts
-          [appinments]="dashbaordDto.appinments"
-          [doctor]="dashbaordDto.doctor"
+          [bookedAppooinment]="dashbaordDto.bookedAppooinment"
+          [unBookedAppoinment]="dashbaordDto.unBookedAppoinment"
         ></app-dashboard-counts>
+        <div class="col-md-12">
+          <div
+            class="custom-bg-white global-rounded custom-box-shadow height-of-doughtnut"
+          >
+            <app-dashboard-doughnut-chart
+              [doughnutChartDataFromApiCounts]="
+                dashbaordDto.doughnutChartDataFromApiCounts
+              "
+              [doughnutChartDataFromApiLabel]="
+                dashbaordDto.doughnutChartDataFromApiLabel
+              "
+            ></app-dashboard-doughnut-chart>
+          </div>
+        </div>
       </div>
+
       <div class="col-md-8">
         <app-forms-list [appintmentList]="appintmentList"></app-forms-list>
       </div>

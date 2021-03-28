@@ -1,6 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="formValid()">
   <div class="custom-modal-header">
-    <div class="heading-form">Edit Doctor</div>
+    <div class="heading-form">Add Appoinment</div>
     <div class="cross-images">
       <img
         src="assets/svg/form-cross-circle.svg"
@@ -189,7 +189,7 @@
         type="submit"
         class="form-button"
         [disabled]="form.invalid || requestSentBoolean"
-        value="Edit"
+        value="Add"
       />
     </div>
   </div>

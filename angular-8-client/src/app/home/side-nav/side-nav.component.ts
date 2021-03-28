@@ -16,7 +16,10 @@ export class SideNavComponent implements OnInit {
     private cdRef: ChangeDetectorRef
   ) {}
   loading: Boolean = false;
-  ngOnInit() {}
+  userDetails;
+  ngOnInit() {
+    this.userDetails = this.utils.getUserDetailsLogin();
+  }
   openPopLogout() {
     const dialogRef = this.dialog.open(LogoutModalComponent, {
       disableClose: true,

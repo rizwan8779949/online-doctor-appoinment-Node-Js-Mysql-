@@ -1,0 +1,22 @@
+@import "../../../../scss/variable.scss";
+
+.sub-heading {
+  width: 50%;
+}
+.add-buttons {
+  text-align: right;
+  width: 100%;
+  .add-button-label {
+    background-color: $backgroundColor;
+    color: $color;
+    width: 170px;
+    height: 35px;
+    font-weight: 200;
+    line-height: 35px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+  }
+}
+@media only screen and (max-width: 600px) {
+}

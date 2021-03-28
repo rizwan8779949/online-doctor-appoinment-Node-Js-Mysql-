@@ -5,37 +5,20 @@
     >
       <div class="counts-container six-full-size">
         <div class="counts-value">
-          <span>{{ amount }} </span>
-          <br />
-          <span class="counts-label">Total Amount of Businees </span>
+          <div>{{ bookedAppooinment ? bookedAppooinment : 0 }}</div>
+          <div class="counts-label">Booked Appoinment</div>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-md-6 mt-4">
-    <div class="custom-bg-white global-rounded custom-box-shadow width-80">
-      <div class="counts-container six-full-size">
-        <div class="counts-value">
-          <span>
-            {{ visitor }}
-          </span>
-          <br />
-          <span class="counts-label">Visitors Invited Today</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6 mt-4">
+  <div class="col-md-12 mt-3">
     <div
-      class="custom-bg-white global-rounded custom-box-shadow width-80 float-right"
+      class="custom-bg-white global-rounded custom-box-shadow width-40 m-auto"
     >
       <div class="counts-container six-full-size">
         <div class="counts-value">
-          <span>
-            {{ testimonials }}
-          </span>
-          <br />
-          <span class="counts-label">Testimonials Passed</span>
+          <div>{{ unBookedAppoinment ? unBookedAppoinment : 0 }}</div>
+          <div class="counts-label">UnBooked Appoinment</div>
         </div>
       </div>
     </div>
