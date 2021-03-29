@@ -20,6 +20,12 @@ export class AppoinmentAddComponent implements OnInit {
   specialistTypeArrayList = this.doctorService.specialistTypeArrayList;
   allTimes = this.doctorService.allTimes;
   requestSentBoolean: Boolean = false;
+  allDoctorList = [];
+  paginationObj = {
+    page: 1,
+    limit: '100',
+  };
+  userDetails;
   constructor(
     private api: ApiService,
     private utils: UtilsService,
@@ -30,50 +36,62 @@ export class AppoinmentAddComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.form = this.formBuilder.group({
-      doctorName: [null, Validators.required],
-      phoneNo: [null, Validators.required],
-      emailId: [
-        null,
-        [
-          Validators.required,
-          Validators.email,
-          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
-        ],
-      ],
-      address: [null, Validators.required],
-      password: [null, Validators.required],
-      consultantFees: [0, Validators.required],
-      workingTime: [null, Validators.required],
-      startTime: [null, Validators.required],
-      endTime: [null, Validators.required],
+      patientId: [null, Validators.required],
+      doctorId: [null, Validators.required],
+      consultantFees: [0],
+      description: [null, Validators.required],
       specialistType: [null, Validators.required],
+      dateOfApply: [new Date(), Validators.required],
+      status: ['Pending', Validators.required],
     });
+    this.getPaginationList();
+    this.userDetails = this.utils.getUserDetailsLogin();
   }
 
   resetFormAndHideModal() {
     this.form.reset();
     this.closeDialog();
   }
-
+  getPaginationList() {
+    this.api
+      .commonGetMethod(this.paginationObj, 'doctors/allList')
+      .subscribe((res: any) => {
+        this.allDoctorList = res.content;
+      });
+  }
   formValid() {
     if (this.form.valid) {
       this.addAppoinmentApi();
     }
   }
+  autoFillDoctorsDetails(event) {
+    if (event.value) {
+      this.allDoctorList.forEach((element) => {
+        if (event.value == element.id) {
+          this.form.controls.consultantFees.setValue(element?.consultantFees);
+          this.form.controls.specialistType.setValue(element?.specialistType);
+        }
+      });
+
+      this.form.controls.patientId.setValue(this.userDetails?.userDetails?.id);
+    }
+  }
   addAppoinmentApi() {
     if (!this.requestSentBoolean) {
       this.requestSentBoolean = true;
-      this.api.commonPostMethod(this.form.value, '').subscribe(
-        (res: any) => {
-          this.requestSentBoolean = false;
-          this.snackBarService.success(res['message']);
-          this.closeDialog();
-        },
-        (err: any) => {
-          this.requestSentBoolean = false;
-          this.snackBarService.error(err?.error?.message);
-        }
-      );
+      this.api
+        .commonPostMethod(this.form.value, 'appoinments/create')
+        .subscribe(
+          (res: any) => {
+            this.requestSentBoolean = false;
+            this.snackBarService.success('Created Successfully');
+            this.closeDialog();
+          },
+          (err: any) => {
+            this.requestSentBoolean = false;
+            this.snackBarService.error(err?.error?.message);
+          }
+        );
     }
   }
   closeDialog() {

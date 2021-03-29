@@ -15,7 +15,7 @@ export class ApiService {
     return this.http.get(environment.baseUrl + url, { params: params });
   }
   commonUpdateMethod(params, data, url) {
-    return this.http.put(environment.baseUrl + url, { params: params }, data);
+    return this.http.put(environment.baseUrl + url, data, { params: params });
   }
   commonDeleteMethod(params, url) {
     return this.http.delete(environment.baseUrl + url, { params: params });

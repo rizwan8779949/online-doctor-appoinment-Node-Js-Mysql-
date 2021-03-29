@@ -13,10 +13,10 @@ module.exports = (app) => {
   router.get("/profile:id", appoinment.findOne);
 
   // Update a Appoinment with id
-  router.put("/edit:id", appoinment.update);
+  router.put("/edit", appoinment.update);
 
   // Delete a Appoinment with id
-  router.delete("/delete:id", appoinment.delete);
+  router.delete("/delete", appoinment.delete);
 
   app.use("/api/appoinments", router);
 };

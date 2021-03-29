@@ -29,13 +29,12 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to online doctor appointment." });
 });
 
-require("./app/routes/tutorial.routes")(app);
 require("./app/routes/patient.routes")(app);
 require("./app/routes/doctor.routes")(app);
 require("./app/routes/appoinment.routes")(app);
 require("./app/routes/applyDoctor.routes")(app);
 require("./app/routes/login.routes")(app);
-
+require("./app/routes/payment.routes")(app);
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

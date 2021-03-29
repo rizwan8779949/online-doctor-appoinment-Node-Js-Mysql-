@@ -28,18 +28,16 @@ export class PatientUpdateComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.form = this.formBuilder.group({
-      patientName: [null, Validators.required],
-      phoneNo: [null, Validators.required],
+      patientName: [this.data?.patientName, Validators.required],
       emailId: [
-        null,
+        this.data?.emailId,
         [
           Validators.required,
           Validators.email,
           Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
         ],
       ],
-      address: [null, Validators.required],
-      password: [null, Validators.required],
+      address: [this.data?.address, Validators.required],
     });
   }
 
@@ -56,18 +54,22 @@ export class PatientUpdateComponent implements OnInit {
   editPatientApi() {
     if (!this.requestSentBoolean) {
       this.requestSentBoolean = true;
-      this.api.commonUpdateMethod(null, this.form.value, '').subscribe(
-        (res: any) => {
-          this.requestSentBoolean = false;
-          this.snackBarService.success(res['message']);
-          this.closeDialog();
-          this.form.reset();
-        },
-        (err: any) => {
-          this.requestSentBoolean = false;
-          this.snackBarService.error(err?.error?.message);
-        }
-      );
+      let params = {};
+      params['id'] = this.data?.id;
+      this.api
+        .commonUpdateMethod(params, this.form.value, 'patient/edit')
+        .subscribe(
+          (res: any) => {
+            this.requestSentBoolean = false;
+            this.snackBarService.success('Updated Successfully');
+            this.closeDialog();
+            this.form.reset();
+          },
+          (err: any) => {
+            this.requestSentBoolean = false;
+            this.snackBarService.error(err?.error?.message);
+          }
+        );
     }
   }
   closeDialog() {

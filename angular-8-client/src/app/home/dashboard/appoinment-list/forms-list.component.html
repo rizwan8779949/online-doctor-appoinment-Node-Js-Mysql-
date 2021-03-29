@@ -6,7 +6,6 @@
       <thead class="table-border-top">
         <tr>
           <th>Patient Name</th>
-          <th>Doctor Name</th>
           <th>Date Of Apply</th>
           <th>Status</th>
           <th>Description</th>
@@ -23,19 +22,10 @@
               </span></span
             >
           </td>
-          <td class="table-list-highlighted-text">
-            <span *ngIf="data.doctorName" [matTooltip]="data.doctorName">
-              <span *ngIf="data.doctorName">
-                {{ data.member.name | titlecase | slice: 0:18 }}
-                <span *ngIf="data.doctorName.length > 18">...</span>
-              </span></span
-            >
-          </td>
-          <td>{{ data.dateOfApply }}</td>
+          <td>{{ data.dateOfApply | date }}</td>
           <td>{{ data.status }}</td>
           <td>{{ data.description }}</td>
-          <td>{{ data.visitor }}</td>
-          <td>{{ data.appoinmentDateAndTime }}</td>
+          <td>{{ data.appoinmentDateAndTime | date }}</td>
         </tr>
       </tbody>
 

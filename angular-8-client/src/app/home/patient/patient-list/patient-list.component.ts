@@ -25,35 +25,26 @@ export class PatientListComponent implements OnInit {
     page: 1,
     limit: '10',
   };
-  page = 1;
-  limit = '10';
   listDto = new Array();
   ngOnInit() {
-    // this.getPaginationList();
+    this.getPaginationList();
   }
 
   getPaginationList() {
-    this.api.commonGetMethod(this.paginationObj, '').subscribe((res: any) => {
-      this.listDto = res.data;
-    });
+    this.api
+      .commonGetMethod(this.paginationObj, 'patient/allList')
+      .subscribe((res: any) => {
+        this.listDto = res.content;
+      });
   }
 
-  public paginationView(event: PageEvent) {
-    this.page = event.pageIndex;
-    this.getPaginationList();
-  }
   refreshList() {
-    this.page = 1;
-    // this.getPaginationList();
+    this.getPaginationList();
   }
   addModal() {
     const dialogRef = this.dialog.open(PatientAddComponent, {
       disableClose: true,
       width: '350px',
-      height: '100%',
-      position: {
-        right: '0',
-      },
     });
     dialogRef.afterClosed().subscribe(() => {
       this.refreshList();
@@ -63,10 +54,6 @@ export class PatientListComponent implements OnInit {
     const dialogRef = this.dialog.open(PatientUpdateComponent, {
       disableClose: true,
       width: '350px',
-      height: '100%',
-      position: {
-        right: '0',
-      },
       data: data,
     });
     dialogRef.afterClosed().subscribe(() => {

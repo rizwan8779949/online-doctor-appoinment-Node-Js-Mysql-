@@ -45,11 +45,20 @@
                 </span></span
               >
             </td>
-            <td>{{ data.dateOfApply }}</td>
+            <td>{{ data.dateOfApply | date }}</td>
             <td>{{ data.status }}</td>
             <td>{{ data.description }}</td>
-            <td>{{ data.visitor }}</td>
-            <td>{{ data.appoinmentDateAndTime }}</td>
+            <td>{{ data.appoinmentDateAndTime | date }}</td>
+            <td>
+              <div class="icons web-view" *ngIf="data?.status == 'Pending'">
+                <mat-icon (click)="editModal(data)" class="mr-4 cursor-pointer"
+                  >edit</mat-icon
+                >
+                <mat-icon (click)="deleteModal(data)" class="cursor-pointer"
+                  >delete</mat-icon
+                >
+              </div>
+            </td>
           </tr>
         </tbody>
 
@@ -60,9 +69,6 @@
         </tbody>
       </table>
     </div>
-
-    <mat-paginator [length]="0" [pageSize]="10" (page)="paginationView($event)">
-    </mat-paginator>
   </div>
 
   <!-- </div> -->

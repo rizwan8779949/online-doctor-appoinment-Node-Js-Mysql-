@@ -21,6 +21,13 @@ export class AppoinmentUpdateComponent implements OnInit {
   requestSentBoolean: Boolean = false;
   specialistTypeArrayList = this.doctorService.specialistTypeArrayList;
   allTimes = this.doctorService.allTimes;
+  allDoctorList = [];
+  paginationObj = {
+    page: 1,
+    limit: '100',
+  };
+  userDetails;
+  statusList = ['Pending', 'Booked', 'Rejected'];
   constructor(
     private api: ApiService,
     private utils: UtilsService,
@@ -32,51 +39,71 @@ export class AppoinmentUpdateComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.form = this.formBuilder.group({
-      doctorName: [null, Validators.required],
-      phoneNo: [null, Validators.required],
-      emailId: [
-        null,
-        [
-          Validators.required,
-          Validators.email,
-          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
-        ],
-      ],
-      address: [null, Validators.required],
-      password: [null, Validators.required],
-      consultantFees: [0, Validators.required],
-      workingTime: [null, Validators.required],
-      startTime: [null, Validators.required],
-      endTime: [null, Validators.required],
-      specialistType: [null, Validators.required],
+      patientId: [this.data?.patientId, Validators.required],
+      doctorId: [this.data?.doctorId, Validators.required],
+      consultantFees: [this.data?.consultantFees],
+      description: [this.data?.description, Validators.required],
+      specialistType: [this.data?.specialistType, Validators.required],
+      dateOfApply: [new Date(this.data?.dateOfApply), Validators.required],
+      status: [this.data?.status, Validators.required],
+      appoinmentDateAndTime: [],
     });
+    this.getPaginationList();
+    this.userDetails = this.utils.getUserDetailsLogin();
   }
 
   resetFormAndHideModal() {
     this.form.reset();
     this.closeDialog();
   }
-
+  getPaginationList() {
+    this.api
+      .commonGetMethod(this.paginationObj, 'doctors/allList')
+      .subscribe((res: any) => {
+        this.allDoctorList = res.content;
+      });
+  }
   formValid() {
     if (this.form.valid) {
       this.editAppoinmentApi();
     }
   }
+  autoFillDoctorsDetails(event) {
+    if (event.value) {
+      this.allDoctorList.forEach((element) => {
+        if (event.value == element.id) {
+          this.form.controls.consultantFees.setValue(element?.consultantFees);
+          this.form.controls.specialistType.setValue(element?.specialistType);
+        }
+      });
+
+      this.form.controls.patientId.setValue(this.userDetails?.userDetails?.id);
+    }
+  }
   editAppoinmentApi() {
     if (!this.requestSentBoolean) {
       this.requestSentBoolean = true;
-      this.api.commonUpdateMethod(null, this.form.value, '').subscribe(
-        (res: any) => {
-          this.requestSentBoolean = false;
-          this.snackBarService.success(res['message']);
-          this.closeDialog();
-          this.form.reset();
-        },
-        (err: any) => {
-          this.requestSentBoolean = false;
-          this.snackBarService.error(err?.error?.message);
-        }
-      );
+      if (this.form.controls.status.value == 'Booked') {
+        this.form.controls.appoinmentDateAndTime.setValue(
+          this.form.controls.dateOfApply.value
+        );
+      }
+      let params = {};
+      params['id'] = this.data?.id;
+      this.api
+        .commonUpdateMethod(params, this.form.value, 'appoinments/edit')
+        .subscribe(
+          (res: any) => {
+            this.requestSentBoolean = false;
+            this.snackBarService.success('Updated Successfully');
+            this.closeDialog();
+            this.form.reset();
+          },
+          (err: any) => {
+            this.requestSentBoolean = false;
+            this.snackBarService.error(err?.error?.message);
+          }
+        );
     }
   }
   closeDialog() {

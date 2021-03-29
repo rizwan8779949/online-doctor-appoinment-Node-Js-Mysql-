@@ -16,10 +16,10 @@ module.exports = (app) => {
   router.get("/findByPhoneNo", patient.findByPhoneNo);
 
   // Update a Patient with id
-  router.put("/edit:id", patient.update);
+  router.put("/edit", patient.update);
 
   // Delete a Patient with id
-  router.delete("/delete:id", patient.delete);
+  router.delete("/delete", patient.delete);
 
   app.use("/api/patient", router);
 };

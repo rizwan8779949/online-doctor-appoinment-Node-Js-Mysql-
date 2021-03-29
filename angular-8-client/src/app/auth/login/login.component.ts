@@ -53,12 +53,11 @@ export class LoginComponent implements OnInit {
             this.getUserDetais('doctors/findByPhoneNo');
           else if (this.form.value.roleName == 'patient')
             this.getUserDetais('patient/findByPhoneNo');
-          else if (this.form.value.roleName == 'staff') {
-            // this.getUserDetais('doctor/findByPhoneNo')
+          else if (this.form.value.roleName == 'Staff') {
+            this.snackBarService.success('You have Logged in Successfullly');
+            localStorage.setItem('userData', JSON.stringify(this.userDetails));
+            this.router.navigateByUrl('home');
           }
-          // this.snackBarService.success('You have Logged in Successfullly');
-          // localStorage.setItem('userData', JSON.stringify(res.data));
-          // this.router.navigateByUrl('home');
         },
         (err: any) => {
           this.loginButtonDisabled = false;

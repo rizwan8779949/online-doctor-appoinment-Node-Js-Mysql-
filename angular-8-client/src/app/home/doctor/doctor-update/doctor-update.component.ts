@@ -32,23 +32,21 @@ export class DoctorUpdateComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.form = this.formBuilder.group({
-      doctorName: [null, Validators.required],
-      phoneNo: [null, Validators.required],
+      doctorName: [this.data?.doctorName, Validators.required],
       emailId: [
-        null,
+        this.data?.emailId,
         [
           Validators.required,
           Validators.email,
           Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
         ],
       ],
-      address: [null, Validators.required],
-      password: [null, Validators.required],
-      consultantFees: [0, Validators.required],
-      workingTime: [null, Validators.required],
+      address: [this.data?.address, Validators.required],
+      consultantFees: [this.data?.consultantFees, Validators.required],
+      workingTime: [null],
       startTime: [null, Validators.required],
       endTime: [null, Validators.required],
-      specialistType: [null, Validators.required],
+      specialistType: [this.data?.specialistType, Validators.required],
     });
   }
 
@@ -65,18 +63,27 @@ export class DoctorUpdateComponent implements OnInit {
   editDoctorApi() {
     if (!this.requestSentBoolean) {
       this.requestSentBoolean = true;
-      this.api.commonUpdateMethod(null, this.form.value, '').subscribe(
-        (res: any) => {
-          this.requestSentBoolean = false;
-          this.snackBarService.success(res['message']);
-          this.closeDialog();
-          this.form.reset();
-        },
-        (err: any) => {
-          this.requestSentBoolean = false;
-          this.snackBarService.error(err?.error?.message);
-        }
+      this.form.controls.workingTime.setValue(
+        this.form.controls.startTime.value +
+          '-' +
+          this.form.controls.endTime.value
       );
+      let params = {};
+      params['id'] = this.data?.id;
+      this.api
+        .commonUpdateMethod(params, this.form.value, 'doctors/edit')
+        .subscribe(
+          (res: any) => {
+            this.requestSentBoolean = false;
+            this.snackBarService.success('Updated Successfully');
+            this.closeDialog();
+            this.form.reset();
+          },
+          (err: any) => {
+            this.requestSentBoolean = false;
+            this.snackBarService.error(err?.error?.message);
+          }
+        );
     }
   }
   closeDialog() {

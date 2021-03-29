@@ -16,7 +16,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./doctor-delete.component.scss'],
 })
 export class DoctorDeleteComponent implements OnInit {
-  id;
   requestSentBoolean: Boolean = false;
   constructor(
     private api: ApiService,
@@ -26,13 +25,13 @@ export class DoctorDeleteComponent implements OnInit {
     private dialogRef: MatDialogRef<DoctorDeleteComponent>,
     @Inject(MAT_DIALOG_DATA) public data
   ) {}
-  ngOnInit(): void {
-    this.id = this.data._id;
-  }
+  ngOnInit(): void {}
   deleteDoctor() {
-    this.api.commonDeleteMethod(this.id, '').subscribe(
+    let params = {};
+    params['id'] = this.data?.id;
+    this.api.commonDeleteMethod(params, 'doctors/delete').subscribe(
       (res: any) => {
-        this.snackBarService.success(res['message']);
+        this.snackBarService.success('Deleted Successfully');
         this.dialogRef.close();
       },
       (err: any) => {

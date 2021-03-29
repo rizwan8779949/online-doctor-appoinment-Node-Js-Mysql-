@@ -28,6 +28,11 @@
           <span matTooltip="Appoinment"> Appoinment</span>
         </a>
       </li>
+      <li *ngIf="userDetails?.loginData?.roleName == 'Staff'">
+        <a [routerLink]="['payment']" routerLinkActive="active-router">
+          <span matTooltip="Payments"> Payments</span>
+        </a>
+      </li>
       <li class="log-out-option">
         <a class="cursor-pointer" (click)="openPopLogout()">
           <span matTooltip="Logout"> Logout</span>

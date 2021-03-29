@@ -67,7 +67,10 @@ exports.findOneByPhoneNo = (req, res) => {
 
 // Update a Doctor by the id in the request
 exports.update = (req, res) => {
-  const id = req.params.id;
+  if (!req.query.id) {
+    res.status(400).send({ message: "Doctor Id is required" });
+  }
+  const id = req.query.id;
 
   Doctor.update(req.body, {
     where: { id: id },
@@ -92,7 +95,10 @@ exports.update = (req, res) => {
 
 // Delete a Doctor with the specified id in the request
 exports.delete = (req, res) => {
-  const id = req.params.id;
+  if (!req.query.id) {
+    res.status(400).send({ message: "Doctor Id is required" });
+  }
+  const id = req.query.id;
 
   Doctor.destroy({
     where: { id: id },

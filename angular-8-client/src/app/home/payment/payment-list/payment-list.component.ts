@@ -3,17 +3,14 @@ import { ApiService } from 'src/app/shared-module/Services/api/api.service';
 import { UtilsService } from 'src/app/shared-module/Services/utils/utils.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { PageEvent } from '@angular/material/paginator';
-import { DoctorAddComponent } from '../doctor-add/doctor-add.component';
-import { DoctorUpdateComponent } from '../doctor-update/doctor-update.component';
-import { DoctorDeleteComponent } from '../doctor-delete/doctor-delete.component';
+import { PaymentAddComponent } from '../payment-add/payment-add.component';
 import { SnackBarService } from 'src/app/shared-module/Services/snackBar/snack-bar.service';
 @Component({
-  selector: 'app-doctor-list',
-  templateUrl: './doctor-list.component.html',
-  styleUrls: ['./doctor-list.component.scss'],
+  selector: 'app-payment-list',
+  templateUrl: './payment-list.component.html',
+  styleUrls: ['./payment-list.component.scss'],
 })
-export class DoctorListComponent implements OnInit {
+export class PaymentListComponent implements OnInit {
   constructor(
     private api: ApiService,
     private utils: UtilsService,
@@ -32,7 +29,7 @@ export class DoctorListComponent implements OnInit {
 
   getPaginationList() {
     this.api
-      .commonGetMethod(this.paginationObj, 'doctors/allList')
+      .commonGetMethod(this.paginationObj, 'payment/allList')
       .subscribe((res: any) => {
         this.listDto = res.content;
       });
@@ -42,28 +39,9 @@ export class DoctorListComponent implements OnInit {
     this.getPaginationList();
   }
   addModal() {
-    const dialogRef = this.dialog.open(DoctorAddComponent, {
+    const dialogRef = this.dialog.open(PaymentAddComponent, {
       disableClose: true,
       width: '450px',
-    });
-    dialogRef.afterClosed().subscribe(() => {
-      this.refreshList();
-    });
-  }
-  editModal(data) {
-    const dialogRef = this.dialog.open(DoctorUpdateComponent, {
-      disableClose: true,
-      width: '450px',
-      data: data,
-    });
-    dialogRef.afterClosed().subscribe(() => {
-      this.refreshList();
-    });
-  }
-  deleteModal(data) {
-    const dialogRef = this.dialog.open(DoctorDeleteComponent, {
-      disableClose: true,
-      data: data,
     });
     dialogRef.afterClosed().subscribe(() => {
       this.refreshList();

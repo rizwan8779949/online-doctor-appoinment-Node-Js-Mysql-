@@ -1,7 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="formValid()">
-  <div class="custom-modal-header">
-    <div class="heading-form">Add Appoinment</div>
-    <div class="cross-images">
+  <div class="custom-modal-header row">
+    <div class="heading-form col-lg-10">Add Appoinment</div>
+    <div class="cross-images col-lg-2">
       <img
         src="assets/svg/form-cross-circle.svg"
         class="custom-times-form-circle"
@@ -11,81 +11,41 @@
   </div>
   <div class="form-body">
     <mat-form-field class="example-full-width" appearance="outline">
-      <mat-label>Name</mat-label>
-      <input matInput type="text" formControlName="doctorName" required />
+      <mat-label>Doctor</mat-label>
+      <mat-select
+        formControlName="doctorId"
+        (selectionChange)="autoFillDoctorsDetails($event)"
+      >
+        <mat-option *ngFor="let data of allDoctorList" [value]="data.id">
+          {{ data.doctorName }}
+        </mat-option>
+      </mat-select>
       <mat-error
         *ngIf="
-          form.controls['doctorName'].errors?.required &&
-          (form.controls['doctorName']?.dirty ||
-            form.controls['doctorName']?.touched)
+          form.controls['doctorId'].errors?.required &&
+          (form.controls['doctorId']?.dirty ||
+            form.controls['doctorId']?.touched)
         "
       >
-        Name is required
+        Doctor is required
       </mat-error>
     </mat-form-field>
     <mat-form-field class="example-full-width" appearance="outline">
-      <mat-label>Phone No.</mat-label>
-      <input
-        matInput
-        type="number"
-        formControlName="phoneNo"
-        pattern="^[6-9]\d{9}$"
-        onnkeydown="javascript: return event.keyCode == 69 ? false : true"
-        required
-      />
+      <mat-label>Specialist Type</mat-label>
+      <input matInput type="text" formControlName="specialistType" readonly />
       <mat-error
         *ngIf="
-          form.controls['phoneNo'].errors?.required &&
-          (form.controls['phoneNo']?.dirty || form.controls['phoneNo']?.touched)
+          form.controls['specialistType'].errors?.required &&
+          (form.controls['specialistType']?.dirty ||
+            form.controls['specialistType']?.touched)
         "
       >
-        Phone Number is required
-      </mat-error>
-      <mat-error
-        *ngIf="
-          !form.controls['phoneNo'].errors?.required &&
-          !form.controls['phoneNo']?.valid
-        "
-      >
-        Phone Number not valid
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="example-full-width" appearance="outline">
-      <mat-label>Email</mat-label>
-      <input matInput type="text" formControlName="emailId" required />
-      <mat-error
-        *ngIf="
-          form.controls['emailId'].errors?.required &&
-          (form.controls['emailId']?.dirty || form.controls['emailId']?.touched)
-        "
-      >
-        Email is required
-      </mat-error>
-      <mat-error *ngIf="form.controls.emailId?.errors?.email">
-        Email not Valid
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field class="example-full-width" appearance="outline">
-      <mat-label>Address</mat-label>
-      <textarea
-        matInput
-        type="text"
-        formControlName="address"
-        required
-      ></textarea>
-      <mat-error
-        *ngIf="
-          form.controls['address'].errors?.required &&
-          (form.controls['address']?.dirty || form.controls['address']?.touched)
-        "
-      >
-        Address is required
+        Specialist Type is required
       </mat-error>
     </mat-form-field>
     <mat-form-field class="example-full-width" appearance="outline">
       <mat-label>Consultant Fees </mat-label>
-      <input matInput type="number" formControlName="consultantFees" required />
+      <input matInput type="number" formControlName="consultantFees" readonly />
       <mat-error
         *ngIf="
           form.controls['consultantFees'].errors?.required &&
@@ -97,93 +57,47 @@
       </mat-error>
     </mat-form-field>
     <mat-form-field class="example-full-width" appearance="outline">
-      <mat-label>Specialist Type</mat-label>
-      <mat-select formControlName="specialistType">
-        <mat-option
-          *ngFor="let data of specialistTypeArrayList"
-          [value]="data.value"
-        >
-          {{ data.viewValue }}
-        </mat-option>
-      </mat-select>
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        type="text"
+        formControlName="description"
+        required
+      ></textarea>
       <mat-error
         *ngIf="
-          form.controls['specialistType'].errors?.required &&
-          (form.controls['specialistType']?.dirty ||
-            form.controls['specialistType']?.touched)
+          form.controls['description'].errors?.required &&
+          (form.controls['description']?.dirty ||
+            form.controls['description']?.touched)
         "
       >
-        Specialist Type is required
+        Description is required
       </mat-error>
     </mat-form-field>
-    <div class="row">
-      <div class="col-md-6">
-        <mat-form-field class="example-full-width" appearance="outline">
-          <mat-label>Start Time</mat-label>
-          <mat-select formControlName="startTime">
-            <mat-option *ngFor="let data of allTimes" [value]="data.label">
-              {{ data.placeholder }}
-            </mat-option>
-          </mat-select>
-          <mat-error
-            *ngIf="
-              form.controls['startTime'].errors?.required &&
-              (form.controls['startTime']?.dirty ||
-                form.controls['startTime']?.touched)
-            "
-          >
-            Start Time is required
-          </mat-error>
-        </mat-form-field>
-      </div>
-      <div class="col-md-6">
-        <mat-form-field class="example-full-width" appearance="outline">
-          <mat-label>End Time</mat-label>
-          <mat-select formControlName="endTime">
-            <mat-option *ngFor="let data of allTimes" [value]="data.label">
-              {{ data.placeholder }}
-            </mat-option>
-          </mat-select>
-          <mat-error
-            *ngIf="
-              form.controls['endTime'].errors?.required &&
-              (form.controls['endTime']?.dirty ||
-                form.controls['endTime']?.touched)
-            "
-          >
-            End Time is required
-          </mat-error>
-        </mat-form-field>
-      </div>
-    </div>
 
     <mat-form-field class="example-full-width" appearance="outline">
-      <mat-label>Password</mat-label>
+      <mat-label>Date Of Apply</mat-label>
       <input
         matInput
-        type="password"
-        formControlName="password"
-        minlength="6"
+        formControlName="dateOfApply"
+        [matDatepicker]="picker"
+        (click)="picker.open()"
+        readonly
         required
       />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
       <mat-error
         *ngIf="
-          form.controls['password'].errors?.required &&
-          (form.controls['password']?.dirty ||
-            form.controls['password']?.touched)
+          form.controls['dateOfApply'].errors?.required &&
+          (form.controls['dateOfApply']?.dirty ||
+            form.controls['dateOfApply']?.touched)
         "
       >
-        Password is required
-      </mat-error>
-      <mat-error
-        *ngIf="
-          !form.controls['password'].errors?.required &&
-          !form.controls['password']?.valid
-        "
-      >
-        Password at least 6 character
+        Booking Date is required
       </mat-error>
     </mat-form-field>
+
     <div class="mt-3">
       <input
         type="submit"
